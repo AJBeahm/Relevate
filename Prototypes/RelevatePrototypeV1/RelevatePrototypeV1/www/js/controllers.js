@@ -1,19 +1,26 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('SignInCtrl', function($scope, Users) {
+    $scope.user = Users.get(username, password);
+})
+.controller('MyDataCtrl', function ($scope, $ionicSideMenuDelegate) {
+    $scope.toggleLeft = function () {
+        $ionicSideMenuDelegate.toggleLeft();
+    }
+})
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
+.controller('NewsFeedCtrl', function($scope, Articles) {
+  $scope.articles = Articles.all();
+  $scope.remove = function(article) {
+    Articles.remove(article);
   }
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('ArticleDetailCtrl', function($scope, $stateParams, Articles) {
+  $scope.article = Articles.get($stateParams.articleId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('CommunityCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };

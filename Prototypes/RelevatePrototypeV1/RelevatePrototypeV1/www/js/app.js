@@ -37,47 +37,56 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   // Each tab has its own nav history stack:
+  .state('tab.signin', {
+      url: '/signin',
+      views: {
+          'tab-signin': {
+              templateUrl: 'templates/tab-signin.html',
+              controller: 'SignInCtrl'
+          }
+      }
+  })
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.mydata', {
+    url: '/mydata',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-mydata': {
+        templateUrl: 'templates/tab-mydata.html',
+        controller: 'MyDataCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.newsfeed', {
+      url: '/newsfeed',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-newsfeed': {
+          templateUrl: 'templates/tab-newsfeed.html',
+          controller: 'NewsFeedCtrl'
         }
       }
     })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+    .state('tab.article-detail', {
+      url: '/articles/:articleId',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-newsfeed': {
+          templateUrl: 'templates/article-detail.html',
+          controller: 'ArticleDetailCtrl'
         }
       }
     })
 
-  .state('tab.account', {
-    url: '/account',
+  .state('tab.community', {
+    url: '/community',
     views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
+      'tab-community': {
+        templateUrl: 'templates/tab-community.html',
+        controller: 'CommunityCtrl'
       }
     }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/newsfeed');
 
 });
