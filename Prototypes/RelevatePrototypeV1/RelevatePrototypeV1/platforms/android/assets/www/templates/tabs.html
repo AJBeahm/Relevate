@@ -1,0 +1,26 @@
+<!--
+Create tabs with an icon and label, using the tabs-stable style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-stable">
+  <div class="icon">
+      <img ng-src="img/RelevateLogoL.png"/>
+  </div>
+
+
+   <!-- My Data Tab -->
+  <ion-tab title="My Data" icon-off="ion-ios-gear-outline" icon-on="ion-ios-gear" href="#/tab/mydata">
+      <ion-nav-view name="tab-mydata"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Newsfeed Tab -->
+  <ion-tab title="Newsfeed" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/tab/newsfeed">
+    <ion-nav-view name="tab-newsfeed"></ion-nav-view>
+  </ion-tab>
+
+  <!-- Community Tab -->
+  <ion-tab title="Community" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/community">
+    <ion-nav-view name="tab-community"></ion-nav-view>
+  </ion-tab>
+</ion-tabs>
