@@ -31,7 +31,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
-
+   .state('app.newsfeed',{
+    url: '/newsfeed',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/newsfeed.html'
+      }
+    }
+   })
+   .state('app.community',{
+    url: '/community',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/community.html'
+      }
+    }
+   })
   .state('app.search', {
     url: '/search',
     views: {

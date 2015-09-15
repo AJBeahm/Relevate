@@ -54,4 +54,12 @@ angular.module('starter.controllers', [])
     Quizzes.remove(quiz);
     $ionicHistory.goBack();
   }
+})
+
+.controller('NewsFeedCtrl', function($scope){
+
+})
+
+.controller('CommunityCtrl', function($scope){
+  
 });
