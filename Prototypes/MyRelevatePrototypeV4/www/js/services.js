@@ -43,4 +43,83 @@ angular.module('starter.services', [])
 		
  
 		};
-	});
+	})
+
+.factory('Journals', function(){
+  var journals = [];
+
+    return {
+    all: function() {
+      return journals;
+    },
+    add: function(journalEntry){
+      var newJournal = [{ 
+        id: journals.length+1,
+        text: journalEntry,
+        date: new Date()
+       }];
+      journals.splice(0,1,newJournal);
+    },
+    remove: function(journalId){
+      quizzes.splice(quizzes.indexOf(quiz),1);    
+    },
+    get: function(journalId){
+      for (var i = 0; i < journals.length; i++){
+        if (journals[i].id === parseInt(journalId)){
+          return journals[i];
+        }
+      }
+      return null;
+    }
+    
+ 
+    };
+  })
+
+.factory('News', function(){
+  var news = [
+  {
+    id : 1,
+    title: '5 Relationship Tips',
+    descshort: 'Check Out these 5 tips on relationships!',
+    desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
+    image: 'img/ionic.png',
+    date: new Date()
+  },
+  {
+    id : 2,
+    title: '5 Relationship Tips',
+    descshort: 'Check Out these 5 tips on relationships!',
+    desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
+    image: 'img/ionic.png',
+    date: new Date()
+  },
+  {
+    id : 3,
+    title: '5 Relationship Tips',
+    descshort: 'Check Out these 5 tips on relationships!',
+    desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
+    image: 'img/ionic.png',
+    date: new Date()
+  }
+  ];
+
+    return {
+    all: function() {
+      return news;
+    },
+    remove: function(newsArticle){
+      news.splice(news.indexOf(newsArticle),1);    
+    },
+    get: function(newsArticleId){
+      for (var i = 0; i < news.length; i++){
+        if (news[i].id === parseInt(newsArticleId)){
+          return news[i];
+        }
+      }
+      return null;
+    }
+    
+ 
+    };
+});

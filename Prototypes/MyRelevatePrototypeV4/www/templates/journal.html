@@ -3,7 +3,18 @@
     <h1>MyJournal</h1>
     <label class="item item-input">
        <span class="input-label">Journal Entry</span>
-       <input class="journal" type="text">
+       <textarea name="Text1" cols="40" rows="5" style="border:1px solid #3366FF;
+	border-left: 4px solid #3366FF;" ng-model = "newEntry"></textarea>
     </label>
+    <button class="button button-positive" ng-click="submitJournal()">
+     Submit
+    </button>
+    <label class="item item-divider"></label>
+    <div class="card" ng-repeat="entry in journals">
+      <div class="item item-text-wrap">
+        <h3>{{entry.date}}</h3>
+        <p>{{entry.text}}</p>
+      </div>
+</div>
   </ion-content>
 </ion-view>

@@ -35,7 +35,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/newsfeed',
     views: {
       'menuContent': {
-        templateUrl: 'templates/newsfeed.html'
+        templateUrl: 'templates/newsfeed.html',
+        controller: 'NewsFeedCtrl'
+      }
+    }
+   })
+   .state('app.newsarticle', {
+    url: '/newsfeed/:newsArticleId',
+    views: {
+      'menuContent' : {
+        templateUrl: 'templates/newsArticle.html',
+        controller: 'NewsArticleCtrl'
       }
     }
    })
@@ -43,7 +53,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/community',
     views: {
       'menuContent': {
-        templateUrl: 'templates/community.html'
+        templateUrl: 'templates/community.html',
+        controller: 'CommunityCtrl'
       }
     }
    })
@@ -68,7 +79,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/journal',
     views:{
       'menuContent': {
-        templateUrl: 'templates/journal.html'
+        templateUrl: 'templates/journal.html',
+        controller: 'JournalCtrl'
       }
     }
   })

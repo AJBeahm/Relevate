@@ -41,6 +41,17 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('MenuCtrl', function($scope, $location, $stateParams, $ionicHistory){
+    $scope.ToNewsFeed = function(){
+      $ionicHistory.clearCache();
+      $location.path('/app/newsfeed');
+    };
+
+    $scope.ToCommunity = function(){
+      $location.path('/app/community');
+    };
+})
+
 .controller('QuizzesCtrl', function($scope, Quizzes) {
   $scope.quizzes = Quizzes.all();
   $scope.allQuizzesFinished = function(){
@@ -48,6 +59,14 @@ angular.module('starter.controllers', [])
   }
 })
 
+.controller('JournalCtrl', function($scope, Journals){
+  $scope.journals = Journals.all();
+  $scope.newEntry = "";
+  $scope.submitJournal = function(){
+    Journals.add(newEntry);
+    $location.path('/app/journal');
+  };
+})
 .controller('QuizCtrl', function($scope, $stateParams, $ionicHistory, Quizzes) {
   $scope.quiz = Quizzes.get($stateParams.quizId);
   $scope.quizFinished = function(quiz){
@@ -56,10 +75,13 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('NewsFeedCtrl', function($scope){
-
+.controller('NewsFeedCtrl', function($scope, $ionicHistory, News){
+  $scope.news = News.all();
 })
 
+.controller('NewsArticleCtrl', function($scope, $stateParams, $ionicHistory, News){
+  $scope.newsArticle = News.get($stateParams.newsArticleId);
+})
 .controller('CommunityCtrl', function($scope){
   
 });
