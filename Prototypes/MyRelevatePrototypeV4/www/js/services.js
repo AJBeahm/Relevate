@@ -53,12 +53,12 @@ angular.module('starter.services', [])
       return journals;
     },
     add: function(journalEntry){
-      var newJournal = [{ 
+      var newJournal = { 
         id: journals.length+1,
-        text: journalEntry,
+        text: String(journalEntry),
         date: new Date()
-       }];
-      journals.splice(0,1,newJournal);
+       };
+      journals.push(newJournal);
     },
     remove: function(journalId){
       quizzes.splice(quizzes.indexOf(quiz),1);    
@@ -83,7 +83,8 @@ angular.module('starter.services', [])
     title: '5 Relationship Tips',
     descshort: 'Check Out these 5 tips on relationships!',
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
-    image: 'img/ionic.png',
+    image: 'img/RelevateLogoL.png',
+    iconImage:'img/RelevateLogoL.png',
     date: new Date()
   },
   {
@@ -91,7 +92,8 @@ angular.module('starter.services', [])
     title: '5 Relationship Tips',
     descshort: 'Check Out these 5 tips on relationships!',
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
-    image: 'img/ionic.png',
+    image: 'img/RelevateLogoL.png',
+    iconImage: 'img/RelevateLogoL.png',
     date: new Date()
   },
   {
@@ -99,7 +101,8 @@ angular.module('starter.services', [])
     title: '5 Relationship Tips',
     descshort: 'Check Out these 5 tips on relationships!',
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
-    image: 'img/ionic.png',
+    image: 'img/RelevateLogoL.png',
+    iconImage: 'img/RelevateLogoL.png',
     date: new Date()
   }
   ];

@@ -61,9 +61,10 @@ angular.module('starter.controllers', [])
 
 .controller('JournalCtrl', function($scope, Journals){
   $scope.journals = Journals.all();
-  $scope.newEntry = "";
-  $scope.submitJournal = function(){
-    Journals.add(newEntry);
+  $scope.newEntry = '';
+  $scope.submitJournal = function(str){
+    Journals.add(str);
+    $scope.newEntry = '';
     $location.path('/app/journal');
   };
 })

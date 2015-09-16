@@ -1,5 +1,9 @@
 /* Empty. Add your own CSS if you like */
 .journal{
-	width: 75%;
-	height: 25%;
+	border:1px solid #3366FF;
+	border-left: 4px solid #3366FF; 
+	margin-right: 5%;
+}
+
+.button-bar{
 }

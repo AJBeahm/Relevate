@@ -3,16 +3,20 @@
     <h1>MyJournal</h1>
     <label class="item item-input">
        <span class="input-label">Journal Entry</span>
-       <textarea name="Text1" cols="40" rows="5" style="border:1px solid #3366FF;
-	border-left: 4px solid #3366FF;" ng-model = "newEntry"></textarea>
+       <textarea class="journal" name="Text1" cols="20" rows="25" ng-model = "newEntry"></textarea>
     </label>
-    <button class="button button-positive" ng-click="submitJournal()">
+    <div class="button-bar">
+    <a class="button button-positive journal-button" ng-click="submitJournal(newEntry)">
      Submit
-    </button>
+    </a>
+    <a class="button button-positive journal-button">
+     Clear
+    </a>
+  </div>
     <label class="item item-divider"></label>
     <div class="card" ng-repeat="entry in journals">
       <div class="item item-text-wrap">
-        <h3>{{entry.date}}</h3>
+        <h3>{{entry.date | date : 'dd-M-yy'}}</h3>
         <p>{{entry.text}}</p>
       </div>
 </div>
