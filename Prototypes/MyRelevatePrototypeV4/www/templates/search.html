@@ -1,5 +1,43 @@
 <ion-view view-title="Search">
-  <ion-content>
+  <ion-content class = "page">
     <h1>Under Construction</h1>
+    <label class="item item-input">
+      <span class="input-label">Search</span>
+    <input type="text">
+</label>
+<div class="list card" ng-repeat="newsArticle in news">
+      <div class="item item-avatar">
+        <img src="{{newsArticle.iconImage}}">
+        <h2>{{newsArticle.title}}</h2>
+        <p>{{newsArticle.date | date : 'dd-M-yy'}}</p>
+      </div>
+
+      <div class="item item-body">
+        <img class="image" src="{{newsArticle.image}}">
+        <p>
+          {{newsArticle.descshort}}
+        </p>
+        <p>
+          <a href="#" class="subdued">1 Like</a>
+          <a href="#" class="subdued">5 Comments</a>
+        </p>
+       </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#">
+          <i class="icon ion-thumbsup"></i>
+          Like
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-chatbox"></i>
+          Comment
+         </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-share"></i>
+          Share
+        </a>
+      </div>
+
+    </div>
   </ion-content>
 </ion-view>

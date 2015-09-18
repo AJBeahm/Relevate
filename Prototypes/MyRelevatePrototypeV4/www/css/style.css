@@ -1,9 +1,29 @@
 /* Empty. Add your own CSS if you like */
+
+body{
+	font-family: Century Gothic, sans-serif;
+}
+.page{
+	background-color:#bdf3ff;
+}
 .journal{
 	border:1px solid #3366FF;
 	border-left: 4px solid #3366FF; 
 	margin-right: 5%;
 }
-
-.button-bar{
+.headerContent{
+	text-align:center;
+}
+.bodyContent{
+	text-align:center;
+	background-image:url(/img/RelevateLogoXL.png);
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.contact{
+	text-align:right;
+}
+.item-input{
+	padding-top:10px;
+	padding-bottom:10px;
 }

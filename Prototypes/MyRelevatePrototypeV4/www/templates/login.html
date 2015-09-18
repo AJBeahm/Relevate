@@ -5,19 +5,53 @@
       <button class="button button-clear" ng-click="closeLogin()">Close</button>
     </div>
   </ion-header-bar>
-  <ion-content>
+  <ion-content class="page">
     <form ng-submit="doLogin()">
       <div class="list">
         <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
+          <span class="input-label">Email</span>
+          <input type="email" ng-model="loginData.username">
         </label>
         <label class="item item-input">
           <span class="input-label">Password</span>
           <input type="password" ng-model="loginData.password">
         </label>
         <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
+          <button class="button button-block button-positive" name="signin" type="submit">Log in</button>
+        </label>
+      </div>
+    </form>
+    <span class="item item-divider">Or</span>
+    <form ng-submit="doSignUp()">
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Email</span>
+          <input type="email" ng-model="userData.email">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Confirm Email</span>
+          <input type="email" ng-model="userData.confirmemail">
+         <p ng-if ="userData.email != userData.confirmemail">Email must match!</p>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input type="password" ng-model="userData.password">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Confirm Password</span>
+          <input type="password" ng-model="userData.confirmpassword">
+          <p ng-if ="userData.password != userData.confirmpassword">Email must match!</p>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">First Name</span>
+          <input type="text" ng-model="userData.firstname">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Last Name</span>
+          <input type="text" ng-model="userData.lastname">
+        </label>
+        <label class="item">
+          <button class="button button-block button-positive" name="signup" type="submit">Sign up</button>
         </label>
       </div>
     </form>
