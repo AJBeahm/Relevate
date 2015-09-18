@@ -24,13 +24,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-
+  //General routing for the app menu. Sets an abstract state for the menu items to append to.
     .state('app', {
     url: '/app',
     abstract: true,
     templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
+
+  //Routing for the about page.
    .state('app.about', {
     url: '/about',
     views: {
@@ -39,6 +41,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
    })
+
+   //Routing for the newsfeed page.
    .state('app.newsfeed',{
     url: '/newsfeed',
     views: {
@@ -48,6 +52,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
    })
+
+   //Routing for the individual newfeed article page. NOT ACTIVE
    .state('app.newsarticle', {
     url: '/newsfeed/:newsArticleId',
     views: {
@@ -57,6 +63,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
    })
+
+   //Routing for the community page.
    .state('app.community',{
     url: '/community',
     views: {
@@ -66,6 +74,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
    })
+
+   //Routing for the search page.
   .state('app.search', {
     url: '/search',
     views: {
@@ -74,6 +84,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+
+  //Routing for the MyData page
   .state('app.mydata', {
     url: '/mydata',
     views: {
@@ -83,6 +95,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
   })
 
+  //Routing for the journaling page
   .state('app.journal', {
     url: '/journal',
     views:{
@@ -92,6 +105,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+
+  //Routing for the quizzes all page
   .state('app.quizzes', {
     url: '/quizzes',
     views: {
@@ -101,6 +116,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+
+  //Routing for the individual quiz page.
   .state('app.quiz', {
     url: '/quizzes/:quizId',
     views: {

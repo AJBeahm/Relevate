@@ -41,10 +41,13 @@ angular.module('starter.controllers', [])
     }, 1000);
   };
   
+  // Checks if user has matching emails and passwords for signup.
   $scope.allowSignUp = function() {
     return ($scope.userData.email == $scope.userData.confirmemail)
             && ($scope.userData.password == $scope.userData.confirmpassword);
   };
+
+  // Signs the user up for the service.
   $scope.doSignUp = function() {
     console.log('Signing up', $scope.userData);
 
@@ -57,6 +60,7 @@ angular.module('starter.controllers', [])
   };
 })
 
+//Controller for all templates.
 .controller('MenuCtrl', function($scope, $location, $stateParams, $ionicHistory){
     $scope.ToNewsFeed = function(){
       $ionicHistory.clearCache();
@@ -68,6 +72,7 @@ angular.module('starter.controllers', [])
     };
 })
 
+//Controller for the quizzes display page.
 .controller('QuizzesCtrl', function($scope, Quizzes) {
   $scope.quizzes = Quizzes.all();
   $scope.allQuizzesFinished = function(){
@@ -75,6 +80,7 @@ angular.module('starter.controllers', [])
   }
 })
 
+//Controller for the journaling page.
 .controller('JournalCtrl', function($scope, Journals){
   $scope.journals = Journals.all();
   $scope.newEntry = '';
@@ -84,6 +90,8 @@ angular.module('starter.controllers', [])
     $location.path('/app/journal');
   };
 })
+
+//Controller for the individual quiz pages.
 .controller('QuizCtrl', function($scope, $stateParams, $ionicHistory, Quizzes) {
   $scope.quiz = Quizzes.get($stateParams.quizId);
   $scope.quizFinished = function(quiz){
@@ -92,13 +100,17 @@ angular.module('starter.controllers', [])
   }
 })
 
+//Controller for the newsfeed page.
 .controller('NewsFeedCtrl', function($scope, $ionicHistory, News){
   $scope.news = News.all();
 })
 
+//Controller for the individual news article page. NOT ACTIVE
 .controller('NewsArticleCtrl', function($scope, $stateParams, $ionicHistory, News){
   $scope.newsArticle = News.get($stateParams.newsArticleId);
 })
+
+//Controller for the community page. NOT ACTIVE
 .controller('CommunityCtrl', function($scope){
   
 });

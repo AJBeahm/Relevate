@@ -1,7 +1,10 @@
 angular.module('starter.services', [])
 
+
+//Factory for quiz data access
 .factory('Quizzes', function(){
 
+  //Local quiz objects for testing
   var quizzes = [
   {
     id: 1,
@@ -24,7 +27,8 @@ angular.module('starter.services', [])
     length: '15m',
     type: 'S'
   }];
-
+  
+  //Basic return functions
 	return {
 		all: function() {
 			return quizzes;
@@ -45,6 +49,7 @@ angular.module('starter.services', [])
 		};
 	})
 
+//Factory for journal data access
 .factory('Journals', function(){
   var journals = [];
 
@@ -76,7 +81,10 @@ angular.module('starter.services', [])
     };
   })
 
+//Factory for new data access
 .factory('News', function(){
+
+  //Local news articles for testin
   var news = [
   {
     id : 1,

@@ -40,15 +40,7 @@
         <label class="item item-input">
           <span class="input-label">Confirm Password</span>
           <input type="password" ng-model="userData.confirmpassword">
-          <p ng-if ="userData.password != userData.confirmpassword">Email must match!</p>
-        </label>
-        <label class="item item-input">
-          <span class="input-label">First Name</span>
-          <input type="text" ng-model="userData.firstname">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Last Name</span>
-          <input type="text" ng-model="userData.lastname">
+          <p ng-if ="userData.password != userData.confirmpassword">Password must match!</p>
         </label>
         <label class="item">
           <button class="button button-block button-positive" name="signup" type="submit">Sign up</button>
