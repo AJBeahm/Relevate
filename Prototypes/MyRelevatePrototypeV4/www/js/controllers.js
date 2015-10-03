@@ -40,7 +40,7 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-  
+
   // Checks if user has matching emails and passwords for signup.
   $scope.allowSignUp = function() {
     return ($scope.userData.email == $scope.userData.confirmemail)
@@ -56,7 +56,7 @@ angular.module('starter.controllers', [])
     $timeout(function() {
       $scope.closeLogin();
     }, 1000);
-    $location.path('/app/mydata');  
+    $location.path('/app/mydata');
   };
 })
 
@@ -112,5 +112,5 @@ angular.module('starter.controllers', [])
 
 //Controller for the community page. NOT ACTIVE
 .controller('CommunityCtrl', function($scope){
-  
+
 });

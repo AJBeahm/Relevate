@@ -8,17 +8,20 @@ body{
 }
 .journal{
 	border:1px solid #3366FF;
-	border-left: 4px solid #3366FF; 
+	border-left: 4px solid #3366FF;
 	margin-right: 5%;
 }
 .headerContent{
 	text-align:center;
+	background-image:url(/img/RelevateLogoXL.png);
+	background-color: #e9f7f9;
 }
+
 .bodyContent{
 	text-align:center;
-	background-image:url(/img/RelevateLogoXL.png);
 	background-repeat:no-repeat;
 	background-position:center;
+	background-color: #e9f7f7;
 }
 .contact{
 	text-align:right;
@@ -26,4 +29,16 @@ body{
 .item-input{
 	padding-top:10px;
 	padding-bottom:10px;
+}
+
+select{
+	background-color:gray;
+}
+
+.contactinfo{
+	float:left;
+}
+
+.submit{
+	right:auto;
 }
