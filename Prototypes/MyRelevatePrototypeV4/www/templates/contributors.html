@@ -1,0 +1,10 @@
+<ion-view view-title="Contributors">
+  <ion-content class="page">
+   <div class="list">
+   	<a class="item item-thumbnail-left" ng-repeat="contr in contributors" href="#/app/contributors/{{contr.id}}">
+   		<img src="img/ionic.png">
+   		<h2>{{contr.name}}</h2>
+   		<p>{{contr.description}}</p>
+   	</a>
+  </ion-content>
+</ion-view>

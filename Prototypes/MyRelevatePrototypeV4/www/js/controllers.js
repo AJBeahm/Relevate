@@ -101,16 +101,32 @@ angular.module('starter.controllers', [])
 })
 
 //Controller for the newsfeed page.
-.controller('NewsFeedCtrl', function($scope, $ionicHistory, News){
+.controller('NewsFeedCtrl', function($scope, $ionicHistory, $location, News, Contributors){
   $scope.news = News.all();
+  $scope.goToArticle = function(articleId){
+      $location.path('/app/newsfeed/'+articleId);
+  }
 })
 
 //Controller for the individual news article page. NOT ACTIVE
-.controller('NewsArticleCtrl', function($scope, $stateParams, $ionicHistory, News){
+.controller('NewsArticleCtrl', function($scope, $stateParams, $ionicHistory, News, Contributors){
   $scope.newsArticle = News.get($stateParams.newsArticleId);
+  $scope.contributor = Contributors.get($scope.newsArticle.author);
 })
 
 //Controller for the community page. NOT ACTIVE
 .controller('CommunityCtrl', function($scope){
 
+})
+
+.controller('ContributorsCtrl', function($scope, Contributors){
+  $scope.contributors = Contributors.all();
+})
+
+.controller('ContributorCtrl', function($scope, $stateParams, $location, Contributors, News){
+  $scope.contributor = Contributors.get($stateParams.contributorId);
+  $scope.articles = News.getByAuthor($stateParams.contributorId);
+  $scope.goToArticle = function(articleId){
+      $location.path('/app/newsfeed/'+articleId);
+  }
 });

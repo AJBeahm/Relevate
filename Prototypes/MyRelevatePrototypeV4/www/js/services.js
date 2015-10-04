@@ -27,14 +27,14 @@ angular.module('starter.services', [])
     length: '15m',
     type: 'S'
   }];
-  
+
   //Basic return functions
 	return {
 		all: function() {
 			return quizzes;
 		},
 		remove: function(quiz){
-			quizzes.splice(quizzes.indexOf(quiz),1);		
+			quizzes.splice(quizzes.indexOf(quiz),1);
 		},
 		get: function(quizId){
 			for (var i = 0; i < quizzes.length; i++){
@@ -44,8 +44,8 @@ angular.module('starter.services', [])
 			}
 			return null;
 		}
-		
- 
+
+
 		};
 	})
 
@@ -58,7 +58,7 @@ angular.module('starter.services', [])
       return journals;
     },
     add: function(journalEntry){
-      var newJournal = { 
+      var newJournal = {
         id: journals.length+1,
         text: String(journalEntry),
         date: new Date()
@@ -66,7 +66,7 @@ angular.module('starter.services', [])
       journals.push(newJournal);
     },
     remove: function(journalId){
-      quizzes.splice(quizzes.indexOf(quiz),1);    
+      quizzes.splice(quizzes.indexOf(quiz),1);
     },
     get: function(journalId){
       for (var i = 0; i < journals.length; i++){
@@ -76,8 +76,8 @@ angular.module('starter.services', [])
       }
       return null;
     }
-    
- 
+
+
     };
   })
 
@@ -88,6 +88,7 @@ angular.module('starter.services', [])
   var news = [
   {
     id : 1,
+    author: 1,
     title: '5 Relationship Tips',
     descshort: 'Check Out these 5 tips on relationships!',
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
@@ -97,6 +98,7 @@ angular.module('starter.services', [])
   },
   {
     id : 2,
+    author: 1,
     title: '5 Relationship Tips',
     descshort: 'Check Out these 5 tips on relationships!',
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
@@ -106,6 +108,7 @@ angular.module('starter.services', [])
   },
   {
     id : 3,
+    author: 3,
     title: '5 Relationship Tips',
     descshort: 'Check Out these 5 tips on relationships!',
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
@@ -120,7 +123,7 @@ angular.module('starter.services', [])
       return news;
     },
     remove: function(newsArticle){
-      news.splice(news.indexOf(newsArticle),1);    
+      news.splice(news.indexOf(newsArticle),1);
     },
     get: function(newsArticleId){
       for (var i = 0; i < news.length; i++){
@@ -129,8 +132,56 @@ angular.module('starter.services', [])
         }
       }
       return null;
+    },
+    getByAuthor: function(authorId){
+      var list = [];
+      for (var i = 0;i < news.length; i++){
+         if(news[i].author === parseInt(authorId)){
+          list.push(news[i]);
+         }
+      }
+      return list;
     }
-    
- 
+
+
+    };
+})
+
+//Factory for contributors
+.factory('Contributors', function(){
+
+  //Local news articles for testin
+  var contributors = [
+  {
+    id : 1,
+    name: 'Dr. Alex Beahm',
+    description: 'Easasd faa elakd fjdksald hddjdj au shasjdfa djsakdkadfgk'
+  },
+  {
+    id : 2,
+    name: 'Dr. George Baker',
+    description: 'Easasd ldldlkh jdkjdjkuh dhsasehj ksudjehhdskk jdhskajdh'
+  },
+  {
+    id : 3,
+    name: 'Dr. Nelson Pence',
+    description: 'Enum kdlal dsaieksa ldldl;lkh dhsa;lhdd dieies lskdjh dldk'
+  }
+  ];
+
+    return {
+    all: function() {
+      return contributors;
+    },
+    get: function(contributorId){
+      for (var i = 0; i < contributors.length; i++){
+        if (contributors[i].id === parseInt(contributorId)){
+          return contributors[i];
+        }
+      }
+      return null;
+    }
+
+
     };
 });

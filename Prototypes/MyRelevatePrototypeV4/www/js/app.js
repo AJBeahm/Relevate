@@ -126,6 +126,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         controller: 'QuizCtrl'
       }
     }
+  })
+
+  //Routing for the contributors all page
+  .state('app.contributors', {
+    url: '/contributors',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/contributors.html',
+        controller: 'ContributorsCtrl'
+      }
+    }
+  })
+
+  //Routing for the individual contributor page.
+  .state('app.contributor', {
+    url: '/contributors/:contributorId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/contributor.html',
+        controller: 'ContributorCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/newsfeed');

@@ -1,7 +1,7 @@
 <ion-view view-title="MyJournal">
   <ion-content class = "page">
     <h1>MyJournal</h1>
-    <label class="item item-input">
+    <label class="item item-input myDataEntry">
        <span class="input-label">Journal Entry</span>
        <textarea class="journal" name="Text1" cols="20" rows="25" ng-model = "newEntry"></textarea>
     </label>
@@ -13,7 +13,7 @@
      Clear
     </a>
   </div>
-    <label class="item item-divider"></label>
+    <label class="item item-divider myDataEntry"></label>
     <div class="card" ng-repeat="entry in journals">
       <div class="item item-text-wrap">
         <h3>{{entry.date | date : 'dd-M-yy'}}</h3>
