@@ -61,7 +61,10 @@ angular.module('starter.controllers', [])
 })
 
 //Controller for all templates.
-.controller('MenuCtrl', function($scope, $location, $stateParams, $ionicHistory){
+.controller('MenuCtrl', function($scope, $window, $location, $stateParams, $ionicHistory){
+
+    $scope.screenWidth = $window.innerWidth;
+
     $scope.ToNewsFeed = function(){
       $ionicHistory.clearCache();
       $location.path('/app/newsfeed');
@@ -70,6 +73,10 @@ angular.module('starter.controllers', [])
     $scope.ToCommunity = function(){
       $location.path('/app/community');
     };
+
+    $scope.OnMobile = function(){
+      return $scope.screenWidth <= 375;
+    }
 })
 
 //Controller for the quizzes display page.
