@@ -1,0 +1,43 @@
+<ion-view view-title="Sign-in / Log-in">
+	<ion-content>
+	<div class="generalScheme">
+		<div class="generalScheme loginContent" style="margin-left:auto;margin-right:auto;width:90%;">
+			<img src = 'img/RelevateLogoXL.png' style="padding=8%;">
+			<div class="generalScheme">
+        		<div class="item item-input myDataEntry" style="width:95%;">
+              <div class="myDataEntry">
+        			<span>Email</span>
+           			 </div>
+                 <label class="item item-input">
+            			<input type="email" name="email" ng-model="user.email" style="width:100%;">
+           			 </label>
+       				 </div>
+       			 <div class="item item-input myDataEntry">
+              <div class="myDataEntry">
+        			<span>Password</span>
+            		</div>
+                <label class="item item-input">
+            			<input type="password" name="password" ng-model="user.password" style="width:100%;">
+           			 </label>
+        		</div>
+        		 <div class = "submit">
+        			<button class="button button-positive" ng-click="login(email,password)" style="width:100%;">
+  					Log In
+					</button>
+				</div>
+				<div class = "externalSignIn generalScheme">
+        	<button class="button button-icon ion-social-googleplus" ng-click="" style="float:left;background-color:red;color:white;width:40%;"> Login
+					</button>
+					<button class="button button-icon ion-social-facebook" ng-click="" style="float:right;background-color:blue;color:white;width:40%;"> Login
+					</button>
+				</div>
+        <div class ="register generalScheme">
+          <h1>Or</h1>
+          <button class="button button-positive" ng-click="register()" style="width:100%;">Register</button>
+        </div>
+
+		</div>
+	</div>
+</div>
+	</ion-content>
+</ion-view>

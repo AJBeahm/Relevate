@@ -1,5 +1,12 @@
 angular.module('starter.controllers', [])
 
+.controller('AuthCtrl', function($scope, $location){
+  $scope.user = {email:'', password: ''};
+  $scope.login = function(username, password) {
+      $location.path('/app/about');
+  };
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $location) {
 
   // With the new view caching in Ionic, Controllers are only called
@@ -64,14 +71,29 @@ angular.module('starter.controllers', [])
 .controller('MenuCtrl', function($scope, $window, $location, $stateParams, $ionicHistory){
 
     $scope.screenWidth = $window.innerWidth;
+    if($scope.screenWidth > 450)
+    {
+      $scope.comString = "Community";
+      $scope.newsString= "NewsFeed";
+      $scope.logString = "LogOut";
+    }
 
-    $scope.ToNewsFeed = function(){
-      $ionicHistory.clearCache();
-      $location.path('/app/newsfeed');
+    $scope.ToNewsFeed = function() {
+      $ionicHistory.clearHistory();
+      $location.path('/app/newsfeed').replace();
     };
 
-    $scope.ToCommunity = function(){
-      $location.path('/app/community');
+    $scope.ToCommunity = function() {
+      $ionicHistory.clearHistory();
+      $location.path('/app/community').replace();
+    };
+
+    $scope.LogOut = function() {
+      $ionicHistory.clearHistory();
+      $ionicHistory.clearCache();
+      $location.path('/auth');
+      $scope.apply();
+      $location.replace();
     };
 
     $scope.OnMobile = function(){
@@ -110,6 +132,7 @@ angular.module('starter.controllers', [])
 //Controller for the newsfeed page.
 .controller('NewsFeedCtrl', function($scope, $ionicHistory, $location, News, Contributors){
   $scope.news = News.all();
+  $scope.contributors = Contributors.all();
   $scope.goToArticle = function(articleId){
       $location.path('/app/newsfeed/'+articleId);
   }

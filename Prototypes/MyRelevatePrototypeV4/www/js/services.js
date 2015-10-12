@@ -63,10 +63,10 @@ angular.module('starter.services', [])
         text: String(journalEntry),
         date: new Date()
        };
-      journals.push(newJournal);
+      journals.splice(journals.length,0,newJournal);
     },
     remove: function(journalId){
-      quizzes.splice(quizzes.indexOf(quiz),1);
+      journals.splice(journals.indexOf(journalId),1);
     },
     get: function(journalId){
       for (var i = 0; i < journals.length; i++){

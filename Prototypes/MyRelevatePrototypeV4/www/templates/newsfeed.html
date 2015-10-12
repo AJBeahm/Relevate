@@ -4,6 +4,7 @@
       <div class="item item-avatar">
         <img src="{{newsArticle.iconImage}}">
         <h2>{{newsArticle.title}}</h2>
+        <h3><a href='#/app/contributors/{{contributors[newsArticle.author - 1].id}}'> by {{contributors[newsArticle.author - 1].name}}</a></h3>
         <p>{{newsArticle.date | date : 'dd-M-yy'}}</p>
       </div>
 

@@ -25,6 +25,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
   //General routing for the app menu. Sets an abstract state for the menu items to append to.
+    .state('auth', {
+      url: '/auth',
+      templateUrl: 'templates/authsplash.html',
+      controller: 'AuthCtrl'
+    })
+
     .state('app', {
     url: '/app',
     abstract: true,
@@ -150,5 +156,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/newsfeed');
+  $urlRouterProvider.otherwise('/auth');
 });

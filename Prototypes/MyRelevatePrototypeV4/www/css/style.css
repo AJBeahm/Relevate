@@ -4,7 +4,7 @@ body{
 	font-family: Century Gothic, sans-serif;
 }
 .page{
-	background-color:#bdf3ff;
+	background-color:#464646;
 }
 .journal{
 	border:1px solid #3366FF;
@@ -13,15 +13,14 @@ body{
 }
 .headerContent{
 	text-align:center;
-	background-image:url(/img/RelevateLogoXL.png);
-	background-color: #e9f7f9;
+	background-color: #1fa9db;
 }
 
 .bodyContent{
 	text-align:center;
 	background-repeat:no-repeat;
 	background-position:center;
-	background-color: #e9f7f7;
+	background-color: #1fa9db;
 }
 .contact{
 	text-align:right;
@@ -44,7 +43,7 @@ select{
 }
 
 .myDataEntry{
-	background-color: #b0d2f8;
+	background-color: #1fa9db;
 	margin:10px;
 	padding-right:7%;
 	padding-left:7%;
@@ -54,4 +53,17 @@ select{
 	padding-left:1;
 	float:right;
 	left:75%;
+}
+
+.generalScheme{
+	background-color: #1fa9db;
+	color:white;
+	height:auto;
+	text-align:center;
+}
+
+.loginContent{
+	margin-left:auto;
+	margin-right:auto;
+	width:33%;
 }
