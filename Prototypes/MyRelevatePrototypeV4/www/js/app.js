@@ -31,6 +31,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       controller: 'AuthCtrl'
     })
 
+    .state('register', {
+      url: '/register',
+      templateUrl: 'templates/register.html',
+      controller: 'RegCtrl'
+    })
+
     .state('app', {
     url: '/app',
     abstract: true,

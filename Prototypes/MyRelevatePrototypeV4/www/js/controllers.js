@@ -1,70 +1,73 @@
 angular.module('starter.controllers', [])
 
-.controller('AuthCtrl', function($scope, $location){
-  $scope.user = {email:'', password: ''};
-  $scope.login = function(username, password) {
-      $location.path('/app/about');
+.controller('AuthCtrl', function($scope, $state, $location, Users){
+  $scope.email = '';
+  $scope.password = '';
+  $scope.errorMessage = null;
+  $scope.Login = function(username, password) {
+      if(Users.get(username,password))
+      {
+          $location.path('/app/about');
+      }
+      else
+      {
+        $scope.errorMessage = 'Invalid email and/or password';
+        $state.reload();
+      }
   };
+  $scope.ToRegister = function() {
+    $location.path('/register');
+  };
+})
+
+.controller('RegCtrl', function($scope, $state, $location, Users){
+    $scope.email = '';
+    $scope.password = '';
+    $scope.confirmPass = '';
+    $scope.errorMessage = '';
+    $scope.Confirm = function(email, password, confirmPass) {
+      if(password.length > 8)
+      {
+        if(password == confirmPass)
+        {
+            if($scope.checkEmailValid())
+            {
+              $scope.errorMessage = 'Okay email is valid...';
+              $state.reload();
+              Users.add(email, password);
+              $location.path('/app/about');
+            }
+           else
+           {
+              $scope.errorMessage = 'Invalid email';
+              $state.reload();
+            }
+          }
+          else
+          {
+          $scope.errorMessage = 'Passwords do not match';
+          $state.reload();
+          }
+        }
+        else
+        {
+         $scope.errorMessage = 'Password not greater than 8 characters';
+         $state.reload();
+        }
+    };
+
+    $scope.checkEmailValid  = function(email)
+    {
+      return (!Users.getEmail(email) && email.length()>8)
+    }
+
+    $scope.ToLogin = function(){
+      $location.path('/auth');
+    };
 })
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $location) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
-
-  // Form data for the login modal
-  $scope.loginData = {};
-  $scope.userData = {};
-
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-
-  // Checks if user has matching emails and passwords for signup.
-  $scope.allowSignUp = function() {
-    return ($scope.userData.email == $scope.userData.confirmemail)
-            && ($scope.userData.password == $scope.userData.confirmpassword);
-  };
-
-  // Signs the user up for the service.
-  $scope.doSignUp = function() {
-    console.log('Signing up', $scope.userData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-    $location.path('/app/mydata');
-  };
 })
 
 //Controller for all templates.

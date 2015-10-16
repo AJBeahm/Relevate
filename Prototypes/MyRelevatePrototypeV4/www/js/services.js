@@ -181,7 +181,46 @@ angular.module('starter.services', [])
       }
       return null;
     }
+  }
 
+  })
 
-    };
+.factory('Users', function(){
+
+  var users = [
+    {id:1,
+     email:'ajbeahm@ksu.edu',
+     password:'Password1'}
+     ];
+
+    return {
+    get: function(email, password){
+      for (var i = 0; i < users.length; i++){
+        if (users[i].email == email){
+          if(users[i].password == password){
+          return users[i];
+           }
+        }
+      }
+      return null;
+    },
+    getEmail: function(email){
+      for (var i = 0; i < users.length; i++){
+        if (users[i].email == email){
+          return true;
+           }
+         }
+        return false;
+      },
+    add: function(newemail, newpassword){
+      var newUser = {
+        id: users.length+1,
+        email: String(newemail) ,
+        password: String(newpassword)
+      };
+      users.splice(users.length,0,newUser);
+    }
+
+  }
+
 });

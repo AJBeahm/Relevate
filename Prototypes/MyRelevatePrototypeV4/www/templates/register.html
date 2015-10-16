@@ -1,10 +1,10 @@
-<ion-view view-title="Sign-in / Log-in">
+<ion-view view-title="Register">
 	<ion-content class="page">
 	<div class="generalScheme">
 		<div class="generalScheme loginContent" style="margin-left:auto;margin-right:auto;width:90%;">
 			<img src = 'img/RelevateLogoXL.png' style="padding=8%;">
 			<div class="generalScheme">
-        <h2 ng-if = 'errorMessage != null' style='color:red;'>{{errorMessage}}</h2>
+        <h2 ng-if = 'errorMessage != null' style="color:red;">{{errorMessage}}</h2>
         		<div class="item item-input myDataEntry">
               <div class="myDataEntry" style="width:25%; float:left;">
         			<span>Email</span>
@@ -21,20 +21,22 @@
             			<input type="password" name="password" ng-model="password" style="width:100%;">
            			 </label>
         		</div>
-        		 <div class = "submit">
-        			<button class="button button-positive" ng-click="Login(email, password)" style="width:100%;">
-  					Log In
+            <div class="item item-input myDataEntry">
+              <div class="myDataEntry" style="width:25%; float:left;">
+              <span>Confirm <br>Password</span>
+                </div>
+                <label class="item item-input" style="width:75%; float:right;">
+                  <input type="password" name="confirmPass" ng-model="confirmPass" style="width:100%;">
+                 </label>
+            </div>
+        		 <div class = "submit generalScheme">
+        			<button class="button button-positive" ng-click="Confirm(email,password,confirmPass)" style="width:100%;">
+  					Confirm
 					</button>
-				</div>
-				<div class = "externalSignIn generalScheme">
-        	<button class="button button-icon ion-social-googleplus" ng-click="" style="float:left;background-color:red;color:white;width:40%;"> Login
-					</button>
-					<button class="button button-icon ion-social-facebook" ng-click="" style="float:right;background-color:blue;color:white;width:40%;"> Login
-					</button>
-				</div>
-        <div class ="register generalScheme">
-          <button class="button button-positive" ng-click="ToRegister()" style="width:100%;">Register</button>
         </div>
+              <div class ="register generalScheme">
+          <button class="button button-positive" ng-click="ToLogin()" style="width:100%;">Back To Login</button>
+				</div>
 
 		</div>
 	</div>
