@@ -11,7 +11,19 @@ angular.module('starter.services', [])
     title: 'Quiz #1',
     description: 'A quick quiz to see how well you can romance!',
     length: '10m',
-    type: 'Q'
+    type: 'Q',
+    questions: [{
+      id:0,
+      text: "Enter in A",
+      options: [{
+        letter: 'A',
+        option: 'Yes'
+      },
+      {
+        letter: 'B',
+        option: 'No'
+      }]
+    }]
   },
   {
     id: 2,

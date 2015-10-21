@@ -49,7 +49,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/about',
     views: {
       'menuContent' : {
-        templateUrl: 'templates/about.html'
+        templateUrl: 'templates/about.html',
+        controller: 'AboutCtrl'
       }
     }
    })

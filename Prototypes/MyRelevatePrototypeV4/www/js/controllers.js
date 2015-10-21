@@ -20,6 +20,15 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('AboutCtrl', function($scope, $location){
+  $scope.PintrestLink = 'https://www.pinterest.com/MyRelevate';
+    $scope.YoutubeLink = 'https://www.youtube.com/channel/UCEh98DlXgjw_ZuNEEnEbLtA';
+    $scope.TwitterLink = 'https://twitter.com/myrelevate';
+    $scope.FacebookLink = 'https://www.facebook.com/MyRelevate';
+  $scope.ToMedia = function(link){
+    var ref = window.open(link, '_blank', 'transitionstyle=crossdissolve,toolbarposition=top');
+    }
+})
 .controller('RegCtrl', function($scope, $state, $location, Users){
     $scope.email = '';
     $scope.password = '';
@@ -30,10 +39,8 @@ angular.module('starter.controllers', [])
       {
         if(password == confirmPass)
         {
-            if($scope.checkEmailValid())
+            if($scope.checkEmailValid(email))
             {
-              $scope.errorMessage = 'Okay email is valid...';
-              $state.reload();
               Users.add(email, password);
               $location.path('/app/about');
             }
@@ -58,7 +65,7 @@ angular.module('starter.controllers', [])
 
     $scope.checkEmailValid  = function(email)
     {
-      return (!Users.getEmail(email) && email.length()>8)
+      return (!Users.getEmail(email) && email.length>8)
     }
 
     $scope.ToLogin = function(){
@@ -126,6 +133,7 @@ angular.module('starter.controllers', [])
 //Controller for the individual quiz pages.
 .controller('QuizCtrl', function($scope, $stateParams, $ionicHistory, Quizzes) {
   $scope.quiz = Quizzes.get($stateParams.quizId);
+  $scope.questions = $scope.quiz.questions;
   $scope.quizFinished = function(quiz){
     Quizzes.remove(quiz);
     $ionicHistory.goBack();

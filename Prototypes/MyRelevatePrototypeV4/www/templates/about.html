@@ -58,15 +58,27 @@ be intentional about the decisions you make, the relationships you form, and the
      </div>
  </div>
      <div class = "card generalScheme">
-     <div class ="contact" style="text-align:center; color:black;">
+     <div class ="contact" style="text-align:center; color:black; width:100%;">
         <p>For more information, contact Amber Vennum PhD at: Avennum@ksu.edu</p>
         <p>Or to find out more about the project and start Relevating today, visit us at our official social media sites:</p>
-                    <button class="button button-icon ion-social-facebook" href="https://www.facebook.com/MyRelevate" style="float:left;background-color:blue;color:white;width:32%;">
+               <div class = "socialMedia">
+                 <div class ="socialMediaButton">
+                    <button class="button button-large icon-left ion-social-facebook button-positive" ng-click="ToMedia(FacebookLink)">Facebook
                     </button>
-                    <button class="button button-icon ion-social-twitter" href="https://twitter.com/myrelevate" style="background-color:aqua;color:white;width:32%;">
+                </div>
+                <div class = "socialMediaButton">
+                    <button class="button button-large icon-left ion-social-twitter button-calm" ng-click="ToMedia(TwitterLink)">Twitter
                     </button>
-                    <button class="button button-icon ion-social-pinterest" href="https://www.pinterest.com/MyRelevate" style="float:right;background-color:red;color:white;width:32%;">
+                </div>
+                <div class = "socialMediaButton">
+                    <button class="button button-large icon-left ion-social-youtube button-assertive" ng-click="ToMedia(YoutubeLink)">Youtube
                     </button>
+                </div>
+                <div class = "socialMediaButton">
+                    <button class="button button-large icon-left ion-social-pinterest button-assertive" ng-click ="ToMedia(PintrestLink)">Pinterest
+                    </button>
+                </div>
+                </div>
         </ul>
       </div>
   </div>
