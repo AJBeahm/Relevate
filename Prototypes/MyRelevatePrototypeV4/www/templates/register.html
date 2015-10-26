@@ -2,31 +2,22 @@
 	<ion-content class="page">
 	<div class="generalScheme">
 		<div class="generalScheme loginContent" style="margin-left:auto;margin-right:auto;width:90%;">
-			<img src = 'img/RelevateLogoXL.png' style="padding=8%;">
+			<img src = 'img/RelevateLogoXL.png'>
 			<div class="generalScheme">
         <h2 ng-if = 'errorMessage != null' style="color:red;">{{errorMessage}}</h2>
         		<div class="item item-input myDataEntry">
-              <div class="myDataEntry" style="width:25%; float:left;">
-        			<span>Email</span>
-           			 </div>
-                 <label class="item item-input" style="width:75%; float:right;">
-            			<input type="email" name="email" ng-model="email" style="width:100%;">
+                 <label class="item item-input" style="width:100%;">
+            			<input type="email" name="email" ng-model="email" placeholder="Email">
            			 </label>
        				 </div>
        			 <div class="item item-input myDataEntry">
-              <div class="myDataEntry" style="width:25%; float:left;">
-        			<span>Password</span>
-            		</div>
-                <label class="item item-input" style="width:75%; float:right;">
-            			<input type="password" name="password" ng-model="password" style="width:100%;">
+                <label class="item item-input" style="width:100%">
+            			<input type="password" name="password" ng-model="password" placeholder="Password">
            			 </label>
         		</div>
             <div class="item item-input myDataEntry">
-              <div class="myDataEntry" style="width:25%; float:left;">
-              <span>Confirm <br>Password</span>
-                </div>
-                <label class="item item-input" style="width:75%; float:right;">
-                  <input type="password" name="confirmPass" ng-model="confirmPass" style="width:100%;">
+                <label class="item item-input" style="width:100%;">
+                  <input type="password" name="confirmPass" ng-model="confirmPass" placeholder="Confirm Passoword">
                  </label>
             </div>
         		 <div class = "submit generalScheme">

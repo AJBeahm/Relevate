@@ -1,6 +1,6 @@
 <ion-view view-title="{{newsArticle.title}}">
   <ion-content class="page">
-    <div class="item item-avatar">
+    <div class="item item-avatar newsArticle">
         <img src="{{newsArticle.iconImage}}">
         <h2>{{newsArticle.title}}</h2>
         <h3><a href='#/app/contributors/{{contributor.id}}'> by {{contributor.name}}</a></h3>
@@ -18,7 +18,7 @@
         </p>
        </div>
 
-      <div class="item tabs tabs-secondary tabs-icon-left">
+      <div class="item tabs tabs-secondary tabs-icon-left newsArticle">
         <a class="tab-item" href="#">
           <i class="icon ion-thumbsup"></i>
           Like
@@ -32,5 +32,11 @@
           Share
         </a>
       </div>
+      <div class="item item-divider">
+        <h3>Tags</h3>
+      </div>
+      <div class="button-bar">
+        <a ng-repeat="tag in tags" href="#" class="button button-calm">{{tag.name}}</a>
+      </div
   </ion-content>
 </ion-view>

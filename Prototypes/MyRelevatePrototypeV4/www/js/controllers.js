@@ -150,9 +150,10 @@ angular.module('starter.controllers', [])
 })
 
 //Controller for the individual news article page. NOT ACTIVE
-.controller('NewsArticleCtrl', function($scope, $stateParams, $ionicHistory, News, Contributors){
+.controller('NewsArticleCtrl', function($scope, $stateParams, $ionicHistory, News, Contributors, Tags){
   $scope.newsArticle = News.get($stateParams.newsArticleId);
   $scope.contributor = Contributors.get($scope.newsArticle.author);
+  $scope.tags = Tags.get($scope.newsArticle.tags);
 })
 
 //Controller for the community page. NOT ACTIVE
@@ -170,4 +171,17 @@ angular.module('starter.controllers', [])
   $scope.goToArticle = function(articleId){
       $location.path('/app/newsfeed/'+articleId);
   }
+})
+
+.controller('MyDataCtrl', function($scope){
+
 });
+
+/*
+.directive('MyDataInit', function(){
+  return{
+    templateUrl: 'mydataInit.html'
+  };
+
+});
+*/

@@ -101,11 +101,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   //Routing for the MyData page
   .state('app.mydata', {
     url: '/mydata',
+    abstract:true,
     views: {
       'menuContent': {
-        templateUrl: 'templates/mydata.html'
+        templateUrl: 'templates/mydataV2.html',
+        controller: 'MyDataCtrl'
         }
       }
+  })
+
+  .state('app.mydata.mydatainit',{
+    url: '/mydatainit',
+    views:{
+      'myDataView': {
+        templateUrl: 'templates/MyDataTemplates/myDataInit.html',
+        controller: 'MyDataCtrl'
+      }
+    }
   })
 
   //Routing for the journaling page

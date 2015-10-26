@@ -106,7 +106,8 @@ angular.module('starter.services', [])
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
     image: 'img/RelevateLogoL.png',
     iconImage:'img/RelevateLogoL.png',
-    date: new Date()
+    date: new Date(),
+    tags:[1,3,4,5]
   },
   {
     id : 2,
@@ -116,7 +117,8 @@ angular.module('starter.services', [])
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
     image: 'img/RelevateLogoL.png',
     iconImage: 'img/RelevateLogoL.png',
-    date: new Date()
+    date: new Date(),
+    tags:[0,1,2]
   },
   {
     id : 3,
@@ -126,7 +128,8 @@ angular.module('starter.services', [])
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
     image: 'img/RelevateLogoL.png',
     iconImage: 'img/RelevateLogoL.png',
-    date: new Date()
+    date: new Date(),
+    tags:[1,2,3,4,5]
   }
   ];
 
@@ -231,6 +234,57 @@ angular.module('starter.services', [])
         password: String(newpassword)
       };
       users.splice(users.length,0,newUser);
+    }
+
+  }
+
+})
+
+.factory('Tags', function(){
+
+  var tags = [
+  {
+    id:0,
+    name:'Relationship'
+  },
+  {
+    id:1,
+    name:'Romance'
+  },
+  {
+    id:2,
+    name:'Trust'
+  },
+  {
+    id:3,
+    name: 'Children'
+  },
+  {
+    id:4,
+    name: 'Cheating'
+  },
+  {
+    id:5,
+    name: 'Lying'
+  },
+  {
+    id:6,
+    name: 'Growth'
+  }];
+
+  return {
+    all: function(){
+      return tags;
+    },
+
+    get: function(tagList){
+      var matchTags = new Array(tagList.length);
+      var count = 0;
+      for(var k = 0; k < tagList.length; k++)
+      {
+        matchTags[k] = tags[tagList[k]];
+      }
+      return matchTags;
     }
 
   }
