@@ -13,7 +13,7 @@ angular.module('starter.services', [])
     length: '10m',
     type: 'Q',
     questions: [{
-      id:0,
+      id:1,
       text: "Enter in A",
       options: [{
         letter: 'A',
@@ -30,14 +30,38 @@ angular.module('starter.services', [])
     title: 'Quiz #2',
     description: 'Quiz about your past romantic interests',
     length: '30m',
-    type: 'S'
+    type: 'S',
+    questions: [{
+      id:1,
+      text: "Enter in A",
+      options: [{
+        letter: 'A',
+        option: 'Yes'
+      },
+      {
+        letter: 'B',
+        option: 'No'
+      }]
+    }]
   },
   {
     id: 3,
     title: 'Quiz #3',
     description: 'Quiz about your last couple dates',
     length: '15m',
-    type: 'S'
+    type: 'S',
+    questions: [{
+      id: 1,
+      text: "Enter in A",
+      options: [{
+        letter: 'A',
+        option: 'Yes'
+      },
+      {
+        letter: 'B',
+        option: 'No'
+      }]
+    }]
   }];
 
   //Basic return functions
@@ -69,9 +93,10 @@ angular.module('starter.services', [])
     all: function() {
       return journals;
     },
-    add: function(journalEntry){
+    add: function(journalEntry,newtitle){
       var newJournal = {
         id: journals.length+1,
+        title: String(newtitle),
         text: String(journalEntry),
         date: new Date()
        };

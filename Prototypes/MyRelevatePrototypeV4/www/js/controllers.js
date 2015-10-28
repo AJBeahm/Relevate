@@ -123,8 +123,9 @@ angular.module('starter.controllers', [])
 .controller('JournalCtrl', function($scope, Journals){
   $scope.journals = Journals.all();
   $scope.newEntry = '';
-  $scope.submitJournal = function(str){
-    Journals.add(str);
+  $scope.title = '';
+  $scope.submitJournal = function(str, title){
+    Journals.add(str, title);
     $scope.newEntry = '';
     $location.path('/app/journal');
   };
@@ -133,7 +134,7 @@ angular.module('starter.controllers', [])
 //Controller for the individual quiz pages.
 .controller('QuizCtrl', function($scope, $stateParams, $ionicHistory, Quizzes) {
   $scope.quiz = Quizzes.get($stateParams.quizId);
-  $scope.questions = $scope.quiz.questions;
+  //$scope.questions = $scope.quiz.questions;
   $scope.quizFinished = function(quiz){
     Quizzes.remove(quiz);
     $ionicHistory.goBack();
@@ -161,8 +162,13 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ContributorsCtrl', function($scope, Contributors){
+.controller('ContributorsCtrl', function($scope, $http, Contributors){
   $scope.contributors = Contributors.all();
+    $http({
+      url: 'relevate.cdxbllcvsaza.us-west-2.rds.amazonaws.com',
+      method: 'GET',
+      params: {table: $scope.choice, index: $scope.index, viewingSize: $scope.viewingSize, sort: $scope.sortChoice},
+    }).success(function(data) {$scope.rows = data.rows; $scope.columns = data.columns; });
 })
 
 .controller('ContributorCtrl', function($scope, $stateParams, $location, Contributors, News){
@@ -176,12 +182,3 @@ angular.module('starter.controllers', [])
 .controller('MyDataCtrl', function($scope){
 
 });
-
-/*
-.directive('MyDataInit', function(){
-  return{
-    templateUrl: 'mydataInit.html'
-  };
-
-});
-*/

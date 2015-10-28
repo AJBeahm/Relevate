@@ -2,22 +2,26 @@
   <ion-content class = "page">
   <div class="generalScheme">
     <h1>MyJournal</h1>
-    <label class="item item-input myDataEntry">
+    <label class="item item-input">
+       <span class="input-label">Title</span>
+       <input type="text" class="journal" name="Title" ng-model = "title"></textarea>
+    </label>
+    <label class="item item-input">
        <span class="input-label">Journal Entry</span>
        <textarea class="journal" name="Text1" cols="20" rows="25" ng-model = "newEntry"></textarea>
     </label>
     <div class="button-bar">
-    <a class="button button-positive journal-button" ng-click="submitJournal(newEntry)">
+    <a class="button button-positive journal-button" ng-click="submitJournal(newEntry,title)">
      Submit
     </a>
     <a class="button button-positive journal-button">
      Clear
     </a>
   </div>
-    <label class="item item-divider myDataEntry"></label>
-    <div class="card" ng-repeat="entry in journals" styl="margin-top:3%;margin-bottom:3%;">
+    <label class="item item-divider"></label>
+    <div class="card" ng-repeat="entry in journals.reverse()" styl="margin-top:3%;margin-bottom:3%;">
       <div class="item item-text-wrap" style="margin-top:3%;margin-bottom:3%;">
-        <h3>{{entry.date | date : 'dd-M-yy'}}</h3>
+        <h2>{{entry.title}} : {{entry.date | date : 'dd-M-yy'}}</h2>
         <p>{{entry.text}}</p>
       </div>
     </div>

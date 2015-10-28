@@ -23,6 +23,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+
+/*
+  var mysql = require('mysql');
+  var connection = mysql.createConnection({
+    host: 'relevate.cdxbllcvsaza.us-west-2.rds.amazonaws.com:3306',
+    user: 'relevateadmin',
+    pass: 'r3l3vat3'
+  });
+  connection.connect();
+*/
+
   $stateProvider
   //General routing for the app menu. Sets an abstract state for the menu items to append to.
     .state('auth', {
@@ -101,7 +112,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   //Routing for the MyData page
   .state('app.mydata', {
     url: '/mydata',
-    abstract:true,
     views: {
       'menuContent': {
         templateUrl: 'templates/mydataV2.html',
@@ -110,12 +120,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
   })
 
-  .state('app.mydata.mydatainit',{
-    url: '/mydatainit',
+  .state('app.mydataInit', {
+    url: '/mydata/mydataInit',
     views:{
-      'myDataView': {
-        templateUrl: 'templates/MyDataTemplates/myDataInit.html',
-        controller: 'MyDataCtrl'
+      'menuContent': {
+        templateUrl: 'templates/mydataInit.html'
+      }
+    }
+  })
+
+  .state('app.mydataLife', {
+    url: '/maydata/mydataInit/:status/:pastRel/:tChild',
+    views:{
+      'menuContent' : {
+        templateUrl: 'templates/mydataLifeEvent'
       }
     }
   })

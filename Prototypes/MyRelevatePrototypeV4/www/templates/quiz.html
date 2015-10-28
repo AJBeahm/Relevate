@@ -3,9 +3,18 @@
   <div class="generalScheme">
     <h1>{{quiz.title}}: </h1>
     <h2>{{quiz.description}}</h2>
-    <div class ="card" ng-repeat"question in questions">
-    	<h1>{{question.text}}</h1>
+    <div class ="card" ng-repeat="question in quiz.questions">
+      <div class="list">
+        <div class="item item-divider">
+                <h1>{{question.id}}. {{question.text}}</h1>
+            </div>
+      <label class="item item-radio" ng-repeat="selections in question.options">
+        <input type="radio" name="group">
+        <div class="item-content">{{selections.letter}}.  {{selections.option}}</div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
     </div>
+  </div>
     <button class="button button-positive" ng-click="quizFinished(quiz)">
   Done!
 </button>
