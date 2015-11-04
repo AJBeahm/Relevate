@@ -164,16 +164,12 @@ angular.module('starter.controllers', [])
 
 .controller('ContributorsCtrl', function($scope, $http, Contributors){
   $scope.contributors = Contributors.all();
-    $http({
-      url: 'relevate.cdxbllcvsaza.us-west-2.rds.amazonaws.com',
-      method: 'GET',
-      params: {table: $scope.choice, index: $scope.index, viewingSize: $scope.viewingSize, sort: $scope.sortChoice},
-    }).success(function(data) {$scope.rows = data.rows; $scope.columns = data.columns; });
 })
 
-.controller('ContributorCtrl', function($scope, $stateParams, $location, Contributors, News){
+.controller('ContributorCtrl', function($scope, $stateParams, $location, Contributors, News, Tags){
   $scope.contributor = Contributors.get($stateParams.contributorId);
   $scope.articles = News.getByAuthor($stateParams.contributorId);
+  $scope.tags = Tags.get($scope.contributor.expertiseAreas);
   $scope.goToArticle = function(articleId){
       $location.path('/app/newsfeed/'+articleId);
   }
