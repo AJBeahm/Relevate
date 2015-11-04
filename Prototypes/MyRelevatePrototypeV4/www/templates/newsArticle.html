@@ -1,7 +1,7 @@
 <ion-view view-title="{{newsArticle.title}}">
   <ion-content class="page">
     <div class="item item-avatar newsArticle">
-        <img src="{{newsArticle.iconImage}}">
+        <img src="{{contributor.profilePic}}">
         <h2>{{newsArticle.title}}</h2>
         <h3><a href='#/app/contributors/{{contributor.id}}'> by {{contributor.name}}</a></h3>
         <p>{{newsArticle.date | date : 'dd-M-yy'}}</p>
