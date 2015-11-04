@@ -26,7 +26,7 @@ angular.module('starter.controllers', [])
     $scope.TwitterLink = 'https://twitter.com/myrelevate';
     $scope.FacebookLink = 'https://www.facebook.com/MyRelevate';
   $scope.ToMedia = function(link){
-    var ref = window.open(link, '_blank', 'transitionstyle=crossdissolve,toolbarposition=top');
+    var ref = window.open(encodeURI(link), '_system', 'transitionstyle=crossdissolve,toolbarposition=top,location=yes');
     }
 })
 .controller('RegCtrl', function($scope, $state, $location, Users){
@@ -180,5 +180,25 @@ angular.module('starter.controllers', [])
 })
 
 .controller('MyDataCtrl', function($scope){
+   $scope.OnKeyUp_RelStatus = "";
+   $scope.DataValues = [];
 
+   var getKeyboardEventResult = function (keyEvent, keyEventDesc)
+   {
+    return keyEventDesc + " (keyCode: " + (window.event ? keyEvent.keyCode : keyEvent.which) + ")";
+   };
+
+   $scope.onKeyUp = function($event, Form, Value)
+   {
+    $scope.OnKeyUp_RelStatus = getKeyboardEventResult($event, "Key up");
+    $scope.DataValues[Form] = Value;
+    if(Value < 0)
+    {
+      $scope.DataValues[Form] = 0;
+    }
+    else if(Value > 100)
+    {
+      $scope.DataValues[Form] = 100;
+    }
+   };
 });
