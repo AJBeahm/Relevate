@@ -7,9 +7,14 @@ body{
 	background-color:#464646;
 }
 .journal{
-	border:1px solid #3366FF;
-	border-left: 4px solid #3366FF;
-	margin-right: 5%;
+	border:1px solid #464646;
+	margin-right:2%;
+	resize:none;
+	overflow: auto;
+}
+.journal-title{
+	border:1px solid #464646;
+	margin-right:2%;
 }
 .headerContent{
 	text-align:center;
@@ -126,11 +131,20 @@ margin-left: 0;
 }
 
 .card-view{
-	width:85%;
-	margin-left: 7%;
+	width:90%;
+	margin-left: 5%;
 }
 
 .profilePic-big{
 	width: 25%;
 	height: 25%;
+}
+
+.under-construction{
+	width: 50%;
+	height: 50%;
+}
+
+mydata-text-entry{
+	background-color:#f2f2f2;
 }

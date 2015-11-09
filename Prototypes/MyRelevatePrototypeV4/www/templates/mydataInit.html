@@ -1,6 +1,6 @@
 <ion-view view-title="My Data">
   <ion-content class="page">
-        <div class="formTemplate" style="padding-top:3%">
+        <div class="formTemplate card-view" style="padding-top:3%">
             <div class="list">
             <div class="item item-divider generalScheme">
                 Current Relationship
@@ -61,10 +61,8 @@
         </div>
         <label class="item item-input">
             <div class = "form-input">
-            <input type="number" class="item-content"name="length" min="0" max="99">
-            <div class="item-content">
-                Years
-            </div>
+            <input type="number" class="mydata-text-entry
+            " placeholder="Length of current status (in years)..."name="length" min="0" max="99">
         </div>
         </label>
     </div>
@@ -75,10 +73,7 @@
         </div>
         <label class="item item-input">
             <div class="form-input">
-            <input type="number" class="item-content" name="numRelate"min="0" max="99">
-            <div class="item-content">
-                Relationships
-            </div>
+            <input type="number" class="mydata-text-entry" placeholder="Number of past relationships..." name="numRelate"min="0" max="99">
         </div>
         </label>
     </div>
@@ -89,18 +84,12 @@
         </div>
         <label class="item item-input">
             <div class="form-input">
-            <input type="number" class="item-content"name="numRelate" min="0" max="50">
-            <div class="item-content">
-                Children
-            </div>
+            <input type="number" placeholder ="Total number of children..." class="mydata-text-entry"name="numRelate" min="0" max="50">
         </div>
         </label>
         <label class="item item-input">
             <div class="form-input">
-            <input type="number" class="item-content"name="numRelate" min="0" max="50">
-            <div class="item-content">
-                Step-Children
-            </div>
+            <input type="number" class="mydata-text-entry" placeholder="Total number of step-children" name="numRelate" min="0" max="50">
         </div>
         </label>
     </div>

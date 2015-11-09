@@ -121,13 +121,21 @@ angular.module('starter.controllers', [])
 
 //Controller for the journaling page.
 .controller('JournalCtrl', function($scope, Journals){
-  $scope.journals = Journals.all();
+  $scope.journals = Journals.all().reverse();
   $scope.newEntry = '';
   $scope.title = '';
   $scope.submitJournal = function(str, title){
     Journals.add(str, title);
+    $scope.journals = Journals.all().reverse();
     $scope.newEntry = '';
+    $scope.title = '';
+    $scope.Clear();
     $location.path('/app/journal');
+  };
+
+  $scope.Clear = function(){
+        document.getElementById("journalEntry").value = '';
+        document.getElementById("journalTitle").value = '';
   };
 })
 
