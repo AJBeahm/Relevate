@@ -183,9 +183,34 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('MyDataCtrl', function($scope){
+.controller('MyDataCtrl', function($scope, $stateParams, $location){
    $scope.OnKeyUp_RelStatus = "";
-   $scope.DataValues = [];
+   $scope.dataValues = [];
+
+  $scope.personData =
+   {
+     currentRelationship : 'Single',
+     currentRelationshipLength : 0,
+     relationshipCount : 0,
+     numChild : 0,
+     numStepChild : 0
+   };
+
+
+   $scope.HashData = function(section)
+   {
+      var urlParam = '';
+      switch(section)
+      {
+      case 1:
+      urlParam = '' + $scope.personData.currentRelationshipLength + ':' +
+      $scope.personData.relationshipCount + ':' +
+      $scope.personData.numChild + ':' +
+      $scope.personData.numStepChild + ':';
+      break;
+      }
+      return urlParam;
+   };
 
    var getKeyboardEventResult = function (keyEvent, keyEventDesc)
    {
@@ -195,14 +220,19 @@ angular.module('starter.controllers', [])
    $scope.onKeyUp = function($event, Form, Value)
    {
     $scope.OnKeyUp_RelStatus = getKeyboardEventResult($event, "Key up");
-    $scope.DataValues[Form] = Value;
+    $scope.dataValues[Form] = Value;
     if(Value < 0)
     {
-      $scope.DataValues[Form] = 0;
+      $scope.dataValues[Form] = 0;
     }
     else if(Value > 100)
     {
-      $scope.DataValues[Form] = 100;
+      $scope.dataValues[Form] = 100;
     }
+   };
+
+   $scope.ToLifeEvents = function(id)
+   {
+      $location.path('/app/mydata/mydataInit/'+$scope.HashData(id)+'/');
    };
 });
