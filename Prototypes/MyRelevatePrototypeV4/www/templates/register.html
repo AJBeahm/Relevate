@@ -3,29 +3,29 @@
 	<div class="generalScheme">
 		<div class="generalScheme loginContent" style="margin-left:auto;margin-right:auto;width:90%;">
 			<img src = 'img/RelevateLogoXL.png'>
-			<div class="generalScheme">
+			<div class="generalScheme card-view">
         <h2 ng-if = 'errorMessage != null' style="color:red;">{{errorMessage}}</h2>
-        		<div class="item item-input myDataEntry">
-                 <label class="item item-input" style="width:100%;">
+        		<div class="item item-input myDataEntry card-view">
+                 <label class="item item-input card-view" style="width:100%;">
             			<input type="email" name="email" ng-model="email" placeholder="Email">
            			 </label>
        				 </div>
-       			 <div class="item item-input myDataEntry">
-                <label class="item item-input" style="width:100%">
+       			 <div class="item item-input myDataEntry card-view">
+                <label class="item item-input card-view" style="width:100%">
             			<input type="password" name="password" ng-model="password" placeholder="Password">
            			 </label>
         		</div>
-            <div class="item item-input myDataEntry">
-                <label class="item item-input" style="width:100%;">
-                  <input type="password" name="confirmPass" ng-model="confirmPass" placeholder="Confirm Passoword">
+            <div class="item item-input myDataEntry card-view">
+                <label class="item item-input card-view" style="width:100%;">
+                  <input type="password" name="confirmPass" ng-model="confirmPass" placeholder="Confirm Password">
                  </label>
             </div>
-        		 <div class = "submit generalScheme">
+        		 <div class = "submit generalScheme card-view">
         			<button class="button button-positive" ng-click="Confirm(email,password,confirmPass)" style="width:100%;">
   					Confirm
 					</button>
         </div>
-              <div class ="register generalScheme">
+              <div class ="register generalScheme card-view">
           <button class="button button-positive" ng-click="ToLogin()" style="width:100%;">Back To Login</button>
 				</div>
 

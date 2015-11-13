@@ -2,9 +2,9 @@
   <ion-content class="page">
    <div class="list">
    	<a class="item item-thumbnail-left generalScheme" ng-repeat="contr in contributors" href="#/app/contributors/{{contr.id}}">
-   		<img src="img/ionic.png">
+   		<img src="{{contr.profilePic}}">
    		<h2 style="color:black;">{{contr.name}}</h2>
-   		<p style="color:black;">{{contr.description}}</p>
+   		<p style="color:black;">{{contr.employmentInfo}}</p>
    	</a>
   </ion-content>
 </ion-view>

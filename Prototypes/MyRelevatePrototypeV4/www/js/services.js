@@ -147,7 +147,7 @@ angular.module('starter.services', [])
   },
   {
     id : 3,
-    author: 3,
+    author: 2,
     title: '5 Relationship Tips',
     descshort: 'Check Out these 5 tips on relationships!',
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
@@ -194,18 +194,23 @@ angular.module('starter.services', [])
   var contributors = [
   {
     id : 1,
-    name: 'Dr. Alex Beahm',
-    description: 'Easasd faa elakd fjdksald hddjdj au shasjdfa djsakdkadfgk'
+    name: 'Dr. Amber Vennum',
+    education: ['MA- University of Houston-Clear Lake in Marriage and Family Therapy in 2007', 'PhD- The Florida State University  in Marriage and Family Therapy in 2011'],
+    employmentInfo: 'Assistant Professor of Marriage and Family Therapy at Kansas State University',
+    description: 'I am passionate about finding ways to give adolescents and young adults the best chance possible of having stable, healthy relationships throughout their lives. I am currently researching risk and resiliency factors that impact romantic relationship stability and health for adolescents and young adults and the long-term impact of those factors. I am also interested in increasing access to mental health services and relationship research by working with high schools and developing online and mobile resources.',
+    expertiseAreas: [7,8,9,10],
+    websiteLinks: ['http://www.he.k-state.edu/fshs/people/avennum/'],
+    profilePic: 'img/AmberVennum.jpg'
   },
   {
     id : 2,
-    name: 'Dr. George Baker',
-    description: 'Easasd ldldlkh jdkjdjkuh dhsasehj ksudjehhdskk jdhskajdh'
-  },
-  {
-    id : 3,
-    name: 'Dr. Nelson Pence',
-    description: 'Enum kdlal dsaieksa ldldl;lkh dhsa;lhdd dieies lskdjh dldk'
+    name: 'Dr J.Kale Monk',
+    education: ['M.S. – Kansas State University, Marriage and Family Therapy, 2013', 'B.S. – Kansas State University, Psychology and Family Studies, 2010'],
+    employmentInfo: 'Ph.D. Student, Instructor, and Graduate Research Assistant, The University of Illinois at Urbana-Champaign, Human Development and Family Studies',
+    description: 'I am currently seeking advanced training in intimate relationship research in order to provide insight into how young adults and adults can create healthy, stable unions. My main interest is helping couples establish and maintain quality in their relationships, especially during stressful transitions (e.g., the transition to adulthood, the transition to marriage).',
+    expertiseAreas: [7,8,11],
+    websiteLinks: ['http://hdfs.illinois.edu/directory/graduate/jkmonk'],
+    profilePic: ''
   }
   ];
 
@@ -295,7 +300,28 @@ angular.module('starter.services', [])
   {
     id:6,
     name: 'Growth'
-  }];
+  },
+  {
+    id:7,
+    name: 'Mental health'
+  },
+  {
+    id:8,
+    name: 'Romantic relationship stability'
+  },
+  {
+    id:9,
+    name: 'Relationship education'
+  },
+  {
+    id:10,
+    name: 'Healthy romantic relationships'
+  },
+  {
+    id:11,
+    name: 'Military couples'
+  }
+  ];
 
   return {
     all: function(){

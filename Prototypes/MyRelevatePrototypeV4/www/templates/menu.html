@@ -8,11 +8,13 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+      <!--
       <ion-nav-buttons side="right">
               <button class="button button-icon button-clear ion-ios-paper-outline" ng-click="ToNewsFeed()">{{newsString}}</button>
               <button class="button button-icon button-clear ion-ios-body" ng-click="ToCommunity()">{{comString}}</button>
               <button class="button button-icon button-clear ion-ios-undo-outline" ng-click="LogOut()">{{logString}}</button>
     </ion-nav-buttons>
+    !-->
     </ion-nav-bar>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
@@ -22,7 +24,15 @@
       <h1 class="title">MyRelevate</h1>
     </ion-header-bar>
     <ion-content class="generalScheme">
-      <ion-list class>
+      <ion-list>
+        <ion-item menu-close href="#/app/newsfeed">
+        <i class="icon ion-ios-paper-outline"></i>
+        Newsfeed
+        </ion-item>
+        <ion-item menu-close href="#/app/community">
+        <i class="icon ion-ios-body"></i>
+        Community
+      </ion-item>
         <ion-item menu-close href="#/app/search">
           <i class="icon ion-ios-search"></i>
           Search
@@ -47,6 +57,10 @@
         <i class="ion-ios-information-outline"></i>
           About
         </ion-item>
+        <ion-item menu-close ng-click="LogOut()">
+        <i class="icon ion-ios-undo-outline"></i>
+           LogOut
+      </ion-item>
       </ion-list>
     </ion-content>
   </ion-side-menu>

@@ -124,16 +124,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     url: '/mydata/mydataInit',
     views:{
       'menuContent': {
-        templateUrl: 'templates/mydataInit.html'
+        templateUrl: 'templates/mydataInit.html',
+        controller: 'MyDataCtrl'
       }
     }
   })
 
   .state('app.mydataLife', {
-    url: '/maydata/mydataInit/:status/:pastRel/:tChild',
+    url: '/mydata/mydataInit/:status/',
     views:{
       'menuContent' : {
-        templateUrl: 'templates/mydataLifeEvent'
+        templateUrl: 'templates/mydataLifeEvent.html',
+        controller: 'MyDataCtrl'
       }
     }
   })

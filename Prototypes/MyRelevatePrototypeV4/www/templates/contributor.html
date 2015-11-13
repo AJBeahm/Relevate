@@ -1,15 +1,21 @@
 <ion-view view-title="{{contributor.name}}">
   <ion-content class="page">
     <div class="generalScheme">
-    <h1>{{contributor.name}}: </h1>
-    <h2>Biography:<br>{{contributor.description}}</h2>
+    <img class= "profilePic-big" src="{{contributor.profilePic}}">
+    <h1>{{contributor.name}}</h1>
+    <h2>{{contributor.employmentInfo}}</h2>
+    <h3 ng-repeat="loc in contributor.education">{{loc}}</h3>
+    <p>Biography:<br>{{contributor.description}}</p>
+    <div class="button-bar">
+        <a ng-repeat="tag in tags" href="#" class="button button-calm">{{tag.name}}</a>
+      </div>
     <button class="button button-positive" ng-click="">
   Follow
      </button>
      </div>
    <div class="list card" ng-repeat="newsArticle in articles">
-      <div class="item item-avatar">
-        <img src="{{newsArticle.iconImage}}">
+      <div class="item item-avatar newsArticle">
+        <img src="{{contributor.profilePic}}">
         <h2>{{newsArticle.title}}</h2>
         <p>{{newsArticle.date | date : 'dd-M-yy'}}</p>
       </div>
@@ -25,7 +31,7 @@
         </p>
        </div>
 
-      <div class="item tabs tabs-secondary tabs-icon-left">
+      <div class="item tabs tabs-secondary tabs-icon-left newsArticle">
         <a class="tab-item" href="#">
           <i class="icon ion-thumbsup"></i>
           Like

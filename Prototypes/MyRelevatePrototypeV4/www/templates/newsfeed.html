@@ -2,7 +2,7 @@
   <ion-content class="page">
     <div class="list card" ng-repeat="newsArticle in news">
       <div class="item item-avatar newsArticle">
-        <img src="{{newsArticle.iconImage}}">
+        <img src="{{contributors[newsArticle.author - 1].profilePic}}">
         <h2>{{newsArticle.title}}</h2>
         <h3><a href='#/app/contributors/{{contributors[newsArticle.author - 1].id}}'> by {{contributors[newsArticle.author - 1].name}}</a></h3>
         <p>{{newsArticle.date | date : 'dd-M-yy'}}</p>

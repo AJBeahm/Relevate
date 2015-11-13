@@ -26,7 +26,7 @@ angular.module('starter.controllers', [])
     $scope.TwitterLink = 'https://twitter.com/myrelevate';
     $scope.FacebookLink = 'https://www.facebook.com/MyRelevate';
   $scope.ToMedia = function(link){
-    var ref = window.open(link, '_blank', 'transitionstyle=crossdissolve,toolbarposition=top');
+    var ref = window.open(encodeURI(link), '_system', 'transitionstyle=crossdissolve,toolbarposition=top,location=yes');
     }
 })
 .controller('RegCtrl', function($scope, $state, $location, Users){
@@ -121,13 +121,21 @@ angular.module('starter.controllers', [])
 
 //Controller for the journaling page.
 .controller('JournalCtrl', function($scope, Journals){
-  $scope.journals = Journals.all();
+  $scope.journals = Journals.all().reverse();
   $scope.newEntry = '';
   $scope.title = '';
   $scope.submitJournal = function(str, title){
     Journals.add(str, title);
+    $scope.journals = Journals.all().reverse();
     $scope.newEntry = '';
+    $scope.title = '';
+    $scope.Clear();
     $location.path('/app/journal');
+  };
+
+  $scope.Clear = function(){
+        document.getElementById("journalEntry").value = '';
+        document.getElementById("journalTitle").value = '';
   };
 })
 
@@ -164,21 +172,67 @@ angular.module('starter.controllers', [])
 
 .controller('ContributorsCtrl', function($scope, $http, Contributors){
   $scope.contributors = Contributors.all();
-    $http({
-      url: 'relevate.cdxbllcvsaza.us-west-2.rds.amazonaws.com',
-      method: 'GET',
-      params: {table: $scope.choice, index: $scope.index, viewingSize: $scope.viewingSize, sort: $scope.sortChoice},
-    }).success(function(data) {$scope.rows = data.rows; $scope.columns = data.columns; });
 })
 
-.controller('ContributorCtrl', function($scope, $stateParams, $location, Contributors, News){
+.controller('ContributorCtrl', function($scope, $stateParams, $location, Contributors, News, Tags){
   $scope.contributor = Contributors.get($stateParams.contributorId);
   $scope.articles = News.getByAuthor($stateParams.contributorId);
+  $scope.tags = Tags.get($scope.contributor.expertiseAreas);
   $scope.goToArticle = function(articleId){
       $location.path('/app/newsfeed/'+articleId);
   }
 })
 
-.controller('MyDataCtrl', function($scope){
+.controller('MyDataCtrl', function($scope, $stateParams, $location){
+   $scope.OnKeyUp_RelStatus = "";
+   $scope.dataValues = [];
 
+  $scope.personData =
+   {
+     currentRelationship : 'Single',
+     currentRelationshipLength : 0,
+     relationshipCount : 0,
+     numChild : 0,
+     numStepChild : 0
+   };
+
+
+   $scope.HashData = function(section)
+   {
+      var urlParam = '';
+      switch(section)
+      {
+      case 1:
+      urlParam = '' + $scope.personData.currentRelationshipLength + ':' +
+      $scope.personData.relationshipCount + ':' +
+      $scope.personData.numChild + ':' +
+      $scope.personData.numStepChild + ':';
+      break;
+      }
+      return urlParam;
+   };
+
+   var getKeyboardEventResult = function (keyEvent, keyEventDesc)
+   {
+    return keyEventDesc + " (keyCode: " + (window.event ? keyEvent.keyCode : keyEvent.which) + ")";
+   };
+
+   $scope.onKeyUp = function($event, Form, Value)
+   {
+    $scope.OnKeyUp_RelStatus = getKeyboardEventResult($event, "Key up");
+    $scope.dataValues[Form] = Value;
+    if(Value < 0)
+    {
+      $scope.dataValues[Form] = 0;
+    }
+    else if(Value > 100)
+    {
+      $scope.dataValues[Form] = 100;
+    }
+   };
+
+   $scope.ToLifeEvents = function(id)
+   {
+      $location.path('/app/mydata/mydataInit/'+$scope.HashData(id)+'/');
+   };
 });
