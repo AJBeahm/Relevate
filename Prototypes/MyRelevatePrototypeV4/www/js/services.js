@@ -131,6 +131,7 @@ angular.module('starter.services', [])
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
     image: 'img/RelevateLogoL.png',
     iconImage:'img/RelevateLogoL.png',
+    pdf: 'img/valentinesResolutions.pdf',
     date: new Date(),
     tags:[1,3,4,5]
   },
@@ -142,6 +143,7 @@ angular.module('starter.services', [])
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
     image: 'img/RelevateLogoL.png',
     iconImage: 'img/RelevateLogoL.png',
+    pdf: 'img/valentinesResolutions.pdf',
     date: new Date(),
     tags:[0,1,2]
   },
@@ -153,6 +155,7 @@ angular.module('starter.services', [])
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
     image: 'img/RelevateLogoL.png',
     iconImage: 'img/RelevateLogoL.png',
+    pdf: 'img/valentinesResolutions.pdf',
     date: new Date(),
     tags:[1,2,3,4,5]
   }
@@ -181,15 +184,26 @@ angular.module('starter.services', [])
          }
       }
       return list;
-    }
-
-
+    },
+    getByList: function(idList){
+      var list = [];
+      for (var i = 0; i < idList.length; i++){
+          list.push(news[idList[i]]);
+         }
+      return list;
+      }
     };
 })
 
 //Factory for contributors
 .factory('Contributors', function(){
 
+  /*
+  To be implemented once API is done
+  - In the all and get functions, just return from API calls what is needed,
+    possibly just cache the first X amount of contributors needed, and append to the local list
+    as needed from the web calls.
+  */
   //Local news articles for testin
   var contributors = [
   {
@@ -210,7 +224,7 @@ angular.module('starter.services', [])
     description: 'I am currently seeking advanced training in intimate relationship research in order to provide insight into how young adults and adults can create healthy, stable unions. My main interest is helping couples establish and maintain quality in their relationships, especially during stressful transitions (e.g., the transition to adulthood, the transition to marriage).',
     expertiseAreas: [7,8,11],
     websiteLinks: ['http://hdfs.illinois.edu/directory/graduate/jkmonk'],
-    profilePic: ''
+    profilePic: 'img/person.png'
   }
   ];
 
@@ -230,8 +244,33 @@ angular.module('starter.services', [])
 
   })
 
+.factory('Favorites', function(){
+  var favorites = [];
+  return {
+    all: function(){
+      return favorites;
+    },
+    add: function(articleId){
+      var favID = parseInt(articleId);
+      var index = favorites.indexOf(favId);
+      if (index != -1){
+            favorites.splice(index,1);
+            return false;
+           }
+      favorites.push(favID);
+      return true;
+    }
+  }
+})
+
 .factory('Users', function(){
 
+  /*
+  To be implemented once API is done
+  - Same as with the contributors, need to make calls through API to get official user information.
+  - Need to authenticate here as well, and make sure that across all other pages that the user's session token is available, otherwise force to login/register screen.
+  - Will only need one user at a time, except in the case when certain other user information is needed, such as on comments and other public posts.
+  */
   var users = [
     {id:1,
      email:'ajbeahm@ksu.edu',
@@ -270,8 +309,13 @@ angular.module('starter.services', [])
 
 })
 
-.factory('Tags', function(){
 
+.factory('Tags', function(){
+  /*
+  To be implemented
+  -Will either needs Josh to make sure that the tags/experience is a part of the contributor profile (i.e. relevant experience)
+  -Otherwise, needs to parse out these from the contributor profile in order to correctly show these tags.
+  */
   var tags = [
   {
     id:0,

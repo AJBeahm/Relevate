@@ -1,49 +1,51 @@
 <ion-view view-title="{{contributor.name}}">
-  <ion-content class="page">
-    <div class="generalScheme">
-    <img class= "profilePic-big" src="{{contributor.profilePic}}">
-    <h1>{{contributor.name}}</h1>
-    <h2>{{contributor.employmentInfo}}</h2>
-    <h3 ng-repeat="loc in contributor.education">{{loc}}</h3>
-    <p>Biography:<br>{{contributor.description}}</p>
-    <div class="button-bar">
-        <a ng-repeat="tag in tags" href="#" class="button button-calm">{{tag.name}}</a>
-      </div>
-    <button class="button button-positive" ng-click="">
-  Follow
-     </button>
-     </div>
-   <div class="list card" ng-repeat="newsArticle in articles">
-      <div class="item item-avatar newsArticle">
-        <img src="{{contributor.profilePic}}">
-        <h2>{{newsArticle.title}}</h2>
-        <p>{{newsArticle.date | date : 'dd-M-yy'}}</p>
-      </div>
+    <ion-content class="page">
+       <div>
+        <div>
+            <div class="col col-50" style="float:left;">
+                <img class="profilePic-big" src="{{contributor.profilePic}}"></div>
+            <div class="col col-50" style="float:right;">
+                <h3>{{contributor.name}}</h3>
+                <h4>Occupation</h4>
+                <p>{{contributor.employmentInfo}}</p>
+                <h4>Education</h4>
+                <p ng-repeat="loc in contributor.education">- {{loc}}</p>
+            </div>
+        </div>
+        <div style="float:right;">
+             <h4>Biography:</h4>
+             <p>{{contributor.description}}</p>
+        </div>
+        <div>
+            <button class="button button-positive" ng-click="" style="width:100%;">
+                    Follow
+                 </button>
+            <div class="button-bar">
+                <a ng-repeat="tag in tags" href="#" class="button button-calm">{{tag.name}}</a>
+            </div>
+        </div>
+        <div class="list card" ng-repeat="newsArticle in articles">
+            <div class="item item-avatar newsArticle">
+                <img src="{{contributor.profilePic}}">
+                <h2>{{newsArticle.title}}</h2>
+                <p>{{newsArticle.date | date : 'dd-M-yy'}}</p>
+            </div>
 
-      <div class="item item-body" ng-click="goToArticle(newsArticle.id)">
-        <img class="image" src="{{newsArticle.image}}">
-        <p>
-          {{newsArticle.descshort}}
-        </p>
-        <p>
-          <a href="#" class="subdued">1 Like</a>
-          <a href="#" class="subdued">5 Comments</a>
-        </p>
-       </div>
+            <div class="item item-body" ng-click="goToArticle(newsArticle.id)">
+                <img class="image" src="{{newsArticle.image}}">
+                <p>
+                    {{newsArticle.descshort}}
+                </p>
+            </div>
 
-      <div class="item tabs tabs-secondary tabs-icon-left newsArticle">
-        <a class="tab-item" href="#">
-          <i class="icon ion-thumbsup"></i>
-          Like
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-chatbox"></i>
-          Comment
-         </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share"></i>
-          Share
-        </a>
-      </div>
-  </ion-content>
+            <div class="item tabs tabs-secondary tabs-icon-left newsArticle">
+                <div class="tab-item" ng-click="AddFavorite(newsArticle.id)" style="width:100%; padding-right:25%;">
+                    <button id="article_{{newsArticle.id}}" class="button button-positive" style="width:25%; position:absolute;">
+              <i class="icon ion-heart"></i>Favorite
+               </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </ion-content>
 </ion-view>

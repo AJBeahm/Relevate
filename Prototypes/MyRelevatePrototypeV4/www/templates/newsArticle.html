@@ -1,37 +1,28 @@
 <ion-view view-title="{{newsArticle.title}}">
   <ion-content class="page">
-    <div class="item item-avatar newsArticle">
+    <div class="item item-avatar newsArticle" style="height:auto;">
         <img src="{{contributor.profilePic}}">
         <h2>{{newsArticle.title}}</h2>
         <h3><a href='#/app/contributors/{{contributor.id}}'> by {{contributor.name}}</a></h3>
         <p>{{newsArticle.date | date : 'dd-M-yy'}}</p>
       </div>
 
-      <div class="item item-body">
+      <div class="item item-body" ng-click= "OpenPDF(newsArticle.pdf)" style="height: 100%; max-width:100%;">
         <img class="image" src="{{newsArticle.image}}">
         <p>
           {{newsArticle.descshort}}
         </p>
-        <p>
-          <a href="#" class="subdued">1 Like</a>
-          <a href="#" class="subdued">5 Comments</a>
-        </p>
        </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left newsArticle">
-        <a class="tab-item" href="#">
-          <i class="icon ion-thumbsup"></i>
-          Like
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-chatbox"></i>
-          Comment
-         </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share"></i>
-          Share
-        </a>
+        <div class="tab-item" ng-click="AddFavorite(newsArticle.id)" style="width:100%; padding-right:25%;">
+            <button id="article_{{newsArticle.id}}" class="button button-positive" style="width:25%; position:absolute;">
+              <i class="icon ion-heart"></i>
+               Favorite
+               </button>
+        </div>
       </div>
+
       <div class="item item-divider">
         <h3>Tags</h3>
       </div>

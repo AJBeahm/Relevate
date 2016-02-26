@@ -18,6 +18,9 @@ angular.module('starter.controllers', [])
   $scope.ToRegister = function() {
     $location.path('/register');
   };
+  $scope.Exit = function() {
+     navigator.app.exitApp();
+  };
 })
 
 .controller('AboutCtrl', function($scope, $location){
@@ -106,6 +109,10 @@ angular.module('starter.controllers', [])
       $location.replace();
     };
 
+    $scope.Exit = function() {
+        navigator.app.exitApp();
+    };
+
     $scope.OnMobile = function(){
       return $scope.screenWidth <= 375;
     }
@@ -150,19 +157,38 @@ angular.module('starter.controllers', [])
 })
 
 //Controller for the newsfeed page.
-.controller('NewsFeedCtrl', function($scope, $ionicHistory, $location, News, Contributors){
+.controller('NewsFeedCtrl', function($scope, $ionicHistory, $location, News, Contributors, Favorites){
   $scope.news = News.all();
   $scope.contributors = Contributors.all();
   $scope.goToArticle = function(articleId){
       $location.path('/app/newsfeed/'+articleId);
   }
+  $scope.AddFavorite = function(id){
+    if(Favorites.add(id)){
+      document.getElementById("article_"+id).innerHTML= "Unfavorite";
+   }
+   else{
+      document.getElementById("article_"+id).innerHTML = "Favorite";
+   }
+  }
 })
 
 //Controller for the individual news article page. NOT ACTIVE
-.controller('NewsArticleCtrl', function($scope, $stateParams, $ionicHistory, News, Contributors, Tags){
+.controller('NewsArticleCtrl', function($scope, $stateParams, $ionicHistory, News, Contributors, Tags, Favorites){
   $scope.newsArticle = News.get($stateParams.newsArticleId);
   $scope.contributor = Contributors.get($scope.newsArticle.author);
   $scope.tags = Tags.get($scope.newsArticle.tags);
+  $scope.AddFavorite = function(id){
+    if(Favorites.add(id)){
+      document.getElementById("article_"+id).innerHTML= "Unfavorite";
+   }
+   else{
+      document.getElementById("article_"+id).innerHTML = "Favorite";
+   }
+  }
+  $scope.OpenPDF = function(pdf){
+    window.open(encodeURI(pdf), '_system');
+  }
 })
 
 //Controller for the community page. NOT ACTIVE
@@ -174,13 +200,28 @@ angular.module('starter.controllers', [])
   $scope.contributors = Contributors.all();
 })
 
-.controller('ContributorCtrl', function($scope, $stateParams, $location, Contributors, News, Tags){
+.controller('ContributorCtrl', function($scope, $stateParams, $location, Contributors, News, Tags, Favorites){
   $scope.contributor = Contributors.get($stateParams.contributorId);
   $scope.articles = News.getByAuthor($stateParams.contributorId);
   $scope.tags = Tags.get($scope.contributor.expertiseAreas);
   $scope.goToArticle = function(articleId){
       $location.path('/app/newsfeed/'+articleId);
   }
+  $scope.AddFavorite = function(id){
+    if(Favorites.add(id))
+    {
+      document.getElementById("article_"+id).innerHTML= "Unfavorite";
+    }
+    else
+    {
+      document.getElementById("article_"+id).innerHTML = "Favorite";
+    }
+  }
+})
+
+.controller('FavoritesCtrl', function($scope, $location, Contributors, News, Tags, Favorites){
+  $scope.contributors = Contributors.all();
+  $scope.news = News.getByList(Favorites.all());
 })
 
 .controller('MyDataCtrl', function($scope, $stateParams, $location){
@@ -190,10 +231,10 @@ angular.module('starter.controllers', [])
   $scope.personData =
    {
      currentRelationship : 'Single',
-     currentRelationshipLength : 0,
-     relationshipCount : 0,
-     numChild : 0,
-     numStepChild : 0
+     currentRelationshipLength : null,
+     relationshipCount : null,
+     numChild : null,
+     numStepChild : null
    };
 
 

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic','starter.controllers', 'starter.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -24,30 +24,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-/*
-  var mysql = require('mysql');
-  var connection = mysql.createConnection({
-    host: 'relevate.cdxbllcvsaza.us-west-2.rds.amazonaws.com:3306',
-    user: 'relevateadmin',
-    pass: 'r3l3vat3'
-  });
-  connection.connect();
-*/
-
   $stateProvider
-  //General routing for the app menu. Sets an abstract state for the menu items to append to.
+    //Note: the auth and register states are not part of the app state, as side-menu access is not granted yet.
+    //These are more like splash screens before the actual app.
+
+    //Routing for the login page
     .state('auth', {
       url: '/auth',
       templateUrl: 'templates/authsplash.html',
       controller: 'AuthCtrl'
     })
 
+    //Routing for the register page
     .state('register', {
       url: '/register',
       templateUrl: 'templates/register.html',
       controller: 'RegCtrl'
     })
 
+    //General routing for the app menu. Sets an abstract state for the menu items to append to.
     .state('app', {
     url: '/app',
     abstract: true,
@@ -55,7 +50,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     controller: 'AppCtrl'
   })
 
-  //Routing for the about page.
+   //Routing for the about page.
    .state('app.about', {
     url: '/about',
     views: {
@@ -109,7 +104,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
-  //Routing for the MyData page
+  //Routing for the MyData page, will be a base for others to come.
   .state('app.mydata', {
     url: '/mydata',
     views: {
@@ -120,21 +115,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
   })
 
+  //Routing for the initial MyData page.
   .state('app.mydataInit', {
     url: '/mydata/mydataInit',
     views:{
       'menuContent': {
         templateUrl: 'templates/mydataInit.html',
-        controller: 'MyDataCtrl'
-      }
-    }
-  })
-
-  .state('app.mydataLife', {
-    url: '/mydata/mydataInit/:status/',
-    views:{
-      'menuContent' : {
-        templateUrl: 'templates/mydataLifeEvent.html',
         controller: 'MyDataCtrl'
       }
     }
@@ -169,6 +155,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       'menuContent': {
         templateUrl: 'templates/quiz.html',
         controller: 'QuizCtrl'
+      }
+    }
+  })
+
+  //Routing for the favorites page
+  .state('app.favorites' , {
+    url: '/favorites',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/favorites.html',
+        controller: 'FavoritesCtrl'
       }
     }
   })
