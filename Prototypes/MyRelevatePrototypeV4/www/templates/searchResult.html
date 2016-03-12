@@ -1,8 +1,5 @@
-<ion-view view-title="{{searchQuery}}">
-  <ion-content class="page">
-   <div class="list">
-   	<a class="item generalScheme" ng-repeat="article in articles" href="#/app/newsfeed/{{article.id}}">
-   		<div class="item item-avatar newsArticle">
+  <div class="list card" ng-repeat="newsArticle in news">
+      <div class="item item-avatar newsArticle">
         <img src="{{contributors[newsArticle.author - 1].profilePic}}">
         <h2>{{newsArticle.title}}</h2>
         <h3><a href='#/app/contributors/{{contributors[newsArticle.author - 1].id}}'> by {{contributors[newsArticle.author - 1].name}}</a></h3>
@@ -14,33 +11,21 @@
         <p>
           {{newsArticle.descshort}}
         </p>
-        <p>
-          <a href="#" class="subdued">1 Like</a>
-          <a href="#" class="subdued">5 Comments</a>
-        </p>
        </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left newsArticle">
-        <a class="tab-item" href="#">
-          <i class="icon ion-thumbsup"></i>
-          Like
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-chatbox"></i>
-          Comment
-         </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share"></i>
-          Share
-        </a>
+        <div class="tab-item" style="width:100%; padding-right:25%;" ng-click="AddFavorite(newsArticle.id)">
+            <button id="article_{{newsArticle.id}}" class="button button-positive" style="width:25%; position:absolute;">
+              <i class="icon ion-heart"></i>
+               Favorite
+               </button>
+        </div>
       </div>
+
     </div>
-   </div>
    <div class="list">
    	<a class="item item-thumbnail-left generalScheme" ng-repeat="contr in contributors" href="#/app/contributors/{{contr.id}}">
    		<img src="{{contr.profilePic}}">
    		<h2 style="color:black;">{{contr.name}}</h2>
    		<p style="color:black;">{{contr.employmentInfo}}</p>
    	</a>
-  </ion-content>
-</ion-view>

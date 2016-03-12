@@ -191,7 +191,24 @@ angular.module('starter.services', [])
           list.push(news[idList[i]]);
          }
       return list;
+      },
+    getByTags: function(tags){
+      var list = [];
+      for(var i = 0; i < news.length; i++){
+        for(var k = 0; k < news[i].tags.length; k++)
+        {
+          for(var tag in tags)
+          {
+            if(tag == news[i].tags[k])
+            {
+              list.push(news[i]);
+              break;
+            }
+          }
+        }
       }
+      return list;
+    }
     };
 })
 
@@ -239,6 +256,23 @@ angular.module('starter.services', [])
         }
       }
       return null;
+    },
+    getByTags: function(tags){
+      var list = [];
+      for(var i = 0; i < contributors.length; i++){
+        for(var k = 0; k < contributors[i].expertiseAreas.length; k++)
+        {
+          for(var tag in tags)
+          {
+            if(tag == contributors[i].expertiseAreas[k])
+            {
+              list.push(contributors[i]);
+              break;
+            }
+          }
+        }
+      }
+      return list;
     }
   }
 
@@ -380,6 +414,22 @@ angular.module('starter.services', [])
         matchTags[k] = tags[tagList[k]];
       }
       return matchTags;
+    },
+
+    getIds: function(tagList){
+      var list = [tagList.length];
+      for(var k = 0; k < tagsList.length; k++)
+      {
+        for(var i = 0; i < tags.length; i++)
+        {
+          if(tags[i].name == tagList[k])
+          {
+            list.push(tags[i].id);
+            break;
+          }
+        }
+      }
+      return list;
     }
 
   }

@@ -1,10 +1,40 @@
 angular.module('starter.controllers', [])
 
-.controller('AuthCtrl', function($scope, $state, $location, Users){
+
+.controller('AppCtrl', function($scope, $ionicModal, $cordovaNetwork, $rootScope, $timeout, $location) {
+   document.addEventListener("deviceready", function () {
+
+        $scope.network = $cordovaNetwork.getNetwork();
+        $scope.isOnline = $cordovaNetwork.isOnline();
+        $scope.$apply();
+
+        // listen for Online event
+        $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
+            $scope.isOnline = true;
+            $scope.network = $cordovaNetwork.getNetwork();
+
+            $scope.$apply();
+        })
+
+        // listen for Offline event
+        $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
+            console.log("got offline");
+            $scope.isOnline = false;
+            $scope.network = $cordovaNetwork.getNetwork();
+
+            $scope.$apply();
+        })
+
+  }, false);
+})
+
+.controller('AuthCtrl', function($scope, $state, $location, $rootScope, $cordovaNetwork, Users){
   $scope.email = '';
   $scope.password = '';
   $scope.errorMessage = null;
   $scope.Login = function(username, password) {
+    if(true)
+    {
       if(Users.get(username,password))
       {
           $location.path('/app/about');
@@ -14,6 +44,11 @@ angular.module('starter.controllers', [])
         $scope.errorMessage = 'Invalid email and/or password';
         $state.reload();
       }
+    }
+    else
+    {
+      alert("No network connection found");
+    }
   };
   $scope.ToRegister = function() {
     $location.path('/register');
@@ -23,14 +58,29 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AboutCtrl', function($scope, $location){
+.controller('AboutCtrl', function($scope, $location, $ionicScrollDelegate){
   $scope.PintrestLink = 'https://www.pinterest.com/MyRelevate';
     $scope.YoutubeLink = 'https://www.youtube.com/channel/UCEh98DlXgjw_ZuNEEnEbLtA';
     $scope.TwitterLink = 'https://twitter.com/myrelevate';
     $scope.FacebookLink = 'https://www.facebook.com/MyRelevate';
+  $scope.readMore = false;
   $scope.ToMedia = function(link){
     var ref = window.open(encodeURI(link), '_system', 'transitionstyle=crossdissolve,toolbarposition=top,location=yes');
     }
+  $scope.MoreInfo = function()
+  {
+    $scope.readMore = !$scope.readMore;
+    if(!$scope.readMore)
+    {
+      $ionicScrollDelegate.scrollTop();
+    }
+    else
+    {
+      $ionicScrollDelegate.scrollBottom();
+    }
+
+    $location.reload();
+  }
 })
 .controller('RegCtrl', function($scope, $state, $location, Users){
     $scope.email = '';
@@ -61,7 +111,7 @@ angular.module('starter.controllers', [])
         }
         else
         {
-         $scope.errorMessage = 'Password not greater than 8 characters';
+         $scope.errorMessage = 'Password must be at least 9 characters long';
          $state.reload();
         }
     };
@@ -74,10 +124,6 @@ angular.module('starter.controllers', [])
     $scope.ToLogin = function(){
       $location.path('/auth');
     };
-})
-
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $location) {
-
 })
 
 //Controller for all templates.
@@ -194,6 +240,48 @@ angular.module('starter.controllers', [])
 //Controller for the community page. NOT ACTIVE
 .controller('CommunityCtrl', function($scope){
 
+})
+
+.controller('SearchCtrl', function($scope, $compile, $sce, Tags, Contributors, News){
+  $scope.query = "";
+  $scope.contentForm = $sce.trustAsHtml("<h1>Search contributors and articles by tag, seperated by commas (Ex: Marriage, Children, Infidelity).</h1>");
+  $scope.queryAccepted = false;
+  $scope.contributors =  [];
+  $scope.news = [];
+  $scope.Request = function(form){
+    return ($scope.queryAccepted);
+  }
+  $scope.Search= function(query){
+    alert("Start");
+    if(query.length == 0)
+    {
+      alert("Zero");
+      $scope.contentForm = $sce.trustAsHTML("<h1>Please enter a valid query before searching</h1>")
+      $scope.queryAccepted = false;
+      alert("Scope length is 0");
+    }
+    var list = query.split(",");
+    if(list.length == 0)
+    {
+      alert("Split fail");
+      $scope.contentForm = $sce.trustAsHTML("<h1>No matching results found!</h1>");
+      $scope.queryAccepted = false;
+      alert("list length is 0");
+    }
+    else
+    {
+     for(var item in list)
+     {
+       item.trim();
+     }
+     alert(list);
+     $scope.tags = Tags.getIds(list);
+     $scope.contributors = Contributors.getByTags($scope.tags);
+     $scope.news = Newsfeed.getByTags($scope.tags);
+     $scope.queryAccepted = true;
+    }
+    $route.reload();
+  }
 })
 
 .controller('ContributorsCtrl', function($scope, $http, Contributors){

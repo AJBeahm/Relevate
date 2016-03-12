@@ -9,13 +9,39 @@
           </div>
         <div class ="col" style = "text-align:center;padding:3%;position:relative; background-color:white; opacity:.85;">
             <h3> Your mobile hub for trustworthy & relevant relationship resources at your fingertips</h3>
-                     <h4> <b>Relevate:</b> the voluntary act of raising your romantic endeavors or pre-existing relationship to a happier, healthier place through research-driven education and conscious decision-making
-be intentional about the decisions you make, the relationships you form, and the effort you put those relationships in order to give yourself the best possible chance at having healthy, stable romantic relationships now and in the future.</h4>
         </div>
+           <div class ="aboutDiv">
+        <h4>For more information, contact Amber Vennum PhD at: Avennum@ksu.edu</h4>
+        <h4>Or to find out more about the project and start Relevating today, visit us at our official social media sites:</h4>
+               <div class = "socialMedia">
+                 <div class ="socialMediaButton">
+                    <button class="button icon-left ion-social-facebook button-positive" ng-click="ToMedia(FacebookLink)">
+                    </button>
+                </div>
+                <div class = "socialMediaButton">
+                    <button class="button icon-left ion-social-twitter button-calm" ng-click="ToMedia(TwitterLink)">
+                    </button>
+                </div>
+                <div class = "socialMediaButton">
+                    <button class="button icon-left ion-social-youtube button-assertive" ng-click="ToMedia(YoutubeLink)">
+                    </button>
+                </div>
+                <div class = "socialMediaButton">
+                    <button class="button icon-left ion-social-pinterest button-assertive" ng-click ="ToMedia(PintrestLink)">
+                    </button>
+                </div>
+                </div>
+      </div>
+      <div class="readMore">
+          <button class="button button-positive" style="width:100%;" ng-click="MoreInfo()">Learn More</button>
+      </div>
+      <div class="extraContent" ng-if="readMore">
               <div style="width:100%; background-color:blue; text-align:center;margin-top:2%;">
             <h2 style="color:white;">Who We Are</h2>
           </div>
               <div class = "aboutDiv">
+                                     <h4> <b>Relevate:</b> the voluntary act of raising your romantic endeavors or pre-existing relationship to a happier, healthier place through research-driven education and conscious decision-making
+be intentional about the decisions you make, the relationships you form, and the effort you put those relationships in order to give yourself the best possible chance at having healthy, stable romantic relationships now and in the future.</h4>
                   <h3>An inclusive research team of...</h3>
                   <ol>
                      <li>Faculty & Graduate students in Marriage & Family Therapy</li>
@@ -51,33 +77,7 @@ be intentional about the decisions you make, the relationships you form, and the
             <li><h4>80% of young adults today own a smart phone (Duggan & Brenner, 2013).</h4></li>
         </ol>
      </div>
-
-     <div style="width:100%; background-color:blue; text-align:center;">
-            <h2 style="color:white;">Contact</h4>
-          </div>
-
-     <div class ="aboutDiv">
-        <h4>For more information, contact Amber Vennum PhD at: Avennum@ksu.edu</h4>
-        <h4>Or to find out more about the project and start Relevating today, visit us at our official social media sites:</h4>
-               <div class = "socialMedia">
-                 <div class ="socialMediaButton">
-                    <button class="button icon-left ion-social-facebook button-positive" ng-click="ToMedia(FacebookLink)">
-                    </button>
-                </div>
-                <div class = "socialMediaButton">
-                    <button class="button icon-left ion-social-twitter button-calm" ng-click="ToMedia(TwitterLink)">
-                    </button>
-                </div>
-                <div class = "socialMediaButton">
-                    <button class="button icon-left ion-social-youtube button-assertive" ng-click="ToMedia(YoutubeLink)">
-                    </button>
-                </div>
-                <div class = "socialMediaButton">
-                    <button class="button icon-left ion-social-pinterest button-assertive" ng-click ="ToMedia(PintrestLink)">
-                    </button>
-                </div>
-                </div>
-      </div>
+   </div>
 </div>
   </ion-content>
 </ion-view>

@@ -299,6 +299,9 @@ margin-left: 0;
 .menu-content-ng {
 	padding-right:16%;
 }
+.menu-left{
+	background-color:#e7ffff;
+}
 .pdf{
 	width: 100%;
 	height: 100%;
