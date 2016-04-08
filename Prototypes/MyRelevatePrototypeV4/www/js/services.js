@@ -131,7 +131,8 @@ angular.module('starter.services', [])
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
     image: 'img/RelevateLogoL.png',
     iconImage:'img/RelevateLogoL.png',
-    pdf: 'img/valentinesResolutions.pdf',
+    type: 'PDF',
+    content: 'img/valentinesResolutions.pdf',
     date: new Date(),
     tags:[1,3,4,5]
   },
@@ -143,7 +144,8 @@ angular.module('starter.services', [])
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
     image: 'img/RelevateLogoL.png',
     iconImage: 'img/RelevateLogoL.png',
-    pdf: 'img/valentinesResolutions.pdf',
+    type: 'PDF',
+    content: 'img/valentinesResolutions.pdf',
     date: new Date(),
     tags:[0,1,2]
   },
@@ -155,7 +157,21 @@ angular.module('starter.services', [])
     desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
     image: 'img/RelevateLogoL.png',
     iconImage: 'img/RelevateLogoL.png',
-    pdf: 'img/valentinesResolutions.pdf',
+    type: 'PDF',
+    content: 'img/valentinesResolutions.pdf',
+    date: new Date(),
+    tags:[1,2,3,4,5]
+  },
+  {
+    id : 4,
+    author: 2,
+    title: '5 Relationship Tips',
+    descshort: 'Check Out these 5 tips on relationships!',
+    desclong: 'These 5 tips will help you and your partner on the best way to carry on a long term relationship.',
+    image: 'img/RelevateLogoL.png',
+    iconImage: 'img/RelevateLogoL.png',
+    type: 'Web',
+    content: 'http://www.google.com/',
     date: new Date(),
     tags:[1,2,3,4,5]
   }
@@ -285,14 +301,31 @@ angular.module('starter.services', [])
       return favorites;
     },
     add: function(articleId){
-      var favID = parseInt(articleId);
+      var favId = articleId;
       var index = favorites.indexOf(favId);
-      if (index != -1){
-            favorites.splice(index,1);
-            return false;
-           }
-      favorites.push(favID);
+      favorites.push(articleId);
       return true;
+    },
+    get: function(articleId){
+      var favId = articleId;
+      var index = favorites.indexOf(favId);
+      if (index == -1){
+        return false;
+      }
+      else{
+        return favorites[index];
+      }
+    },
+    remove: function(articleId){
+      var favId = articleId;
+      var index = favorites.indexOf(favId);
+      if(index == -1){
+        return false;
+      }
+      else{
+        favorites.splice(index,1);
+        return true;
+      }
     }
   }
 })

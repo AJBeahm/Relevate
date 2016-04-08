@@ -108,6 +108,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services', 'n
   //Routing for the MyData page, will be a base for others to come.
   .state('app.mydata', {
     url: '/mydata',
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: 'templates/mydataV2.html',
@@ -119,6 +120,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services', 'n
   //Routing for the initial MyData page.
   .state('app.mydataInit', {
     url: '/mydata/mydataInit',
+    cache: false,
     views:{
       'menuContent': {
         templateUrl: 'templates/mydataInit.html',

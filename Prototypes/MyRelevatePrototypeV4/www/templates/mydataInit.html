@@ -57,12 +57,12 @@
     </div>
     <div class="list">
         <div class="item item-divider" style="text-align:center;">
-            Length of current status
+            Months in current relationship
         </div>
         <label class="item item-input">
             <div class = "form-input">
             <input type="number" class="mydata-text-entry
-            " placeholder="Length of current status (in years)..."name="length" min="0" max="99" ng-model="personData.currentRelationshipLength">
+            " placeholder="Length of current status (in months)..."name="length" min="0" max="99" ng-model="personData.currentRelationshipLength">
         </div>
         </label>
     </div>
@@ -80,21 +80,16 @@
 
     <div class="list">
         <div class="item item-divider" style="text-align:center;">
-            Number of children/step-children
+            Number of children
         </div>
         <label class="item item-input">
             <div class="form-input">
             <input type="number" placeholder ="Total number of children..." class="mydata-text-entry"name="numRelate" min="0" max="50" ng-model="personData.numChild">
         </div>
         </label>
-        <label class="item item-input">
-            <div class="form-input">
-            <input type="number" class="mydata-text-entry" placeholder="Total number of step-children" name="numRelate" min="0" max="50" ng-model="personData.numStepChild">
-        </div>
-        </label>
     </div>
 </div>
-    <button class="button button-full button-positive" ng-click="">
+    <button class="button button-full button-positive" ng-click="Submit()">
       Done
     </button>
   </ion-content>

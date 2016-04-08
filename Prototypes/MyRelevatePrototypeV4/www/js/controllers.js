@@ -37,7 +37,7 @@ angular.module('starter.controllers', [])
     {
       if(Users.get(username,password))
       {
-          $location.path('/app/about');
+          $location.path('/app/mydata/mydataInit');
       }
       else
       {
@@ -72,14 +72,14 @@ angular.module('starter.controllers', [])
     $scope.readMore = !$scope.readMore;
     if(!$scope.readMore)
     {
-      $ionicScrollDelegate.scrollTop();
+      $ionicScrollDelegate.scrollTop(true);
     }
     else
     {
-      $ionicScrollDelegate.scrollBottom();
+      $ionicScrollDelegate.scrollTo(0,
+        document.getElementById("about").scrollHeight,
+        true);
     }
-
-    $location.reload();
   }
 })
 .controller('RegCtrl', function($scope, $state, $location, Users){
@@ -95,7 +95,7 @@ angular.module('starter.controllers', [])
             if($scope.checkEmailValid(email))
             {
               Users.add(email, password);
-              $location.path('/app/about');
+              $location.path('/app/mydata/mydataInit');
             }
            else
            {
@@ -173,7 +173,7 @@ angular.module('starter.controllers', [])
 })
 
 //Controller for the journaling page.
-.controller('JournalCtrl', function($scope, Journals){
+.controller('JournalCtrl', function($scope, $location, Journals){
   $scope.journals = Journals.all().reverse();
   $scope.newEntry = '';
   $scope.title = '';
@@ -203,22 +203,51 @@ angular.module('starter.controllers', [])
 })
 
 //Controller for the newsfeed page.
-.controller('NewsFeedCtrl', function($scope, $ionicHistory, $location, News, Contributors, Favorites){
+.controller('NewsFeedCtrl', function($scope, $ionicHistory, $location, $cordovaToast, Tags, News, Contributors, Favorites){
   $scope.news = News.all();
   $scope.contributors = Contributors.all();
+  $scope.MatchTags = function(){
+    var taglist = [];
+    for(var x = 0; x < $scope.news.length; ++x){
+      var item = $scope.news[x];
+      taglist[item.id] = Tags.get(item.tags);
+    }
+    return taglist;
+  }
+  $scope.tagList = $scope.MatchTags();
+
+/* For loading purposes
+  $scope.$on('$viewContentLoaded', function(){
+    $ionicHistory.clearHistory();
+    $ionicHistory.clearCache();
+    $ionicViewService.clearHistory();
+  });
+*/
+
+  $scope.isFavorited = function(articleId){
+    return Favorites.get(articleId);
+  }
   $scope.goToArticle = function(articleId){
       $location.path('/app/newsfeed/'+articleId);
   }
   $scope.AddFavorite = function(id){
-    if(Favorites.add(id)){
-      document.getElementById("article_"+id).innerHTML= "Unfavorite";
+   if(Favorites.get(id)){
+      Favorites.remove(id);
+      alert("Removed");
+      //$cordovaToast.show("Unfavorited");
    }
    else{
-      document.getElementById("article_"+id).innerHTML = "Favorite";
+      Favorites.add(id);
+      alert("Added");
+      //$cordovaToast.show("Favorited");
    }
+  }
+  $scope.OpenPDF = function(link){
+    var ref = window.open(encodeURI(link), '_system', 'transitionstyle=crossdissolve,toolbarposition=top,location=no');
   }
 })
 
+/* UNUSED
 //Controller for the individual news article page. NOT ACTIVE
 .controller('NewsArticleCtrl', function($scope, $stateParams, $ionicHistory, News, Contributors, Tags, Favorites){
   $scope.newsArticle = News.get($stateParams.newsArticleId);
@@ -241,7 +270,7 @@ angular.module('starter.controllers', [])
 .controller('CommunityCtrl', function($scope){
 
 })
-
+*/
 .controller('SearchCtrl', function($scope, $compile, $sce, Tags, Contributors, News){
   $scope.query = "";
   $scope.contentForm = $sce.trustAsHtml("<h1>Search contributors and articles by tag, seperated by commas (Ex: Marriage, Children, Infidelity).</h1>");
@@ -288,21 +317,44 @@ angular.module('starter.controllers', [])
   $scope.contributors = Contributors.all();
 })
 
-.controller('ContributorCtrl', function($scope, $stateParams, $location, Contributors, News, Tags, Favorites){
+.controller('ContributorCtrl', function($scope, $stateParams, $location, $cordovaToast, Contributors, News, Tags, Favorites){
   $scope.contributor = Contributors.get($stateParams.contributorId);
   $scope.articles = News.getByAuthor($stateParams.contributorId);
   $scope.tags = Tags.get($scope.contributor.expertiseAreas);
+  $scope.MatchTags = function(){
+    var taglist = [];
+    for(var x = 0; x < $scope.articles.length; ++x){
+      var item = $scope.articles[x];
+      taglist[item.id] = Tags.get(item.tags);
+    }
+    return taglist;
+  }
+  $scope.tagList = $scope.MatchTags();
   $scope.goToArticle = function(articleId){
       $location.path('/app/newsfeed/'+articleId);
   }
+  $scope.OpenPDF = function(link){
+    var ref = window.open(encodeURI(link), '_system', 'transitionstyle=crossdissolve,toolbarposition=top,location=no');
+  }
   $scope.AddFavorite = function(id){
-    if(Favorites.add(id))
-    {
-      document.getElementById("article_"+id).innerHTML= "Unfavorite";
-    }
-    else
-    {
-      document.getElementById("article_"+id).innerHTML = "Favorite";
+    if(Favorites.get(id)){
+      Favorites.remove(id);
+      //$cordovaToast.show("Unfavorited");
+   }
+   else{
+       Favorites.add(id);
+      //$cordovaToast.show("Favorited");
+   }
+ }
+
+   $scope.isFavorited = function(id){
+    return Favorites.get(id);
+   }
+   $scope.RemoveFavorite = function(id){
+    if(Favorites.get(id)){
+      Favorites.remove(id);
+      alert("Removed");
+      location.reload();
     }
   }
 })
@@ -310,9 +362,30 @@ angular.module('starter.controllers', [])
 .controller('FavoritesCtrl', function($scope, $location, Contributors, News, Tags, Favorites){
   $scope.contributors = Contributors.all();
   $scope.news = News.getByList(Favorites.all());
+  $scope.MatchTags = function(){
+    var taglist = [];
+    for(var x = 0; x < $scope.news.length; ++x){
+      var item = $scope.news[x];
+      taglist[item.id] = Tags.get(item.tags);
+    }
+    return taglist;
+  }
+  $scope.tagList = $scope.MatchTags();
+
+  $scope.RemoveFavorite = function(id){
+    if(Favorites.get(id)){
+      Favorites.remove(id);
+      alert("Removed");
+      location.reload();
+    }
+  }
+
+  $scope.isFavorited = function(id){
+    return Favorites.get(id);
+  }
 })
 
-.controller('MyDataCtrl', function($scope, $stateParams, $location){
+.controller('MyDataCtrl', function($scope, $ionicHistory, $stateParams, $state, $location){
    $scope.OnKeyUp_RelStatus = "";
    $scope.dataValues = [];
 
@@ -321,8 +394,7 @@ angular.module('starter.controllers', [])
      currentRelationship : 'Single',
      currentRelationshipLength : null,
      relationshipCount : null,
-     numChild : null,
-     numStepChild : null
+     numChild : null
    };
 
 
@@ -334,8 +406,7 @@ angular.module('starter.controllers', [])
       case 1:
       urlParam = '' + $scope.personData.currentRelationshipLength + ':' +
       $scope.personData.relationshipCount + ':' +
-      $scope.personData.numChild + ':' +
-      $scope.personData.numStepChild + ':';
+      $scope.personData.numChild;
       break;
       }
       return urlParam;
@@ -358,10 +429,40 @@ angular.module('starter.controllers', [])
     {
       $scope.dataValues[Form] = 100;
     }
-   };
+   }
+
+   $scope.CheckValid = function(){
+      var tempData = $scope.personData;
+      if(tempData.currentRelationshipLength != null && tempData.currentRelationshipLength >= 0 && tempData.currentRelationshipLength < 100)
+      {
+        if(tempData.relationshipCount != null && tempData.relationshipCount >= 0 && tempData.relationshipCount < 1000)
+        {
+          if(tempData.numChild != null && tempData.numChild >= 0 && tempData.numChild <= 100)
+          {
+            return true;
+          }
+        }
+      }
+      alert("Please enter valid number");
+      return false;
+   }
+
+   $scope.Submit = function()
+   {
+    if($scope.CheckValid())
+    {
+      $ionicHistory.clearHistory();
+      $ionicHistory.currentView($ionicHistory.backView());
+      $ionicHistory.clearCache().then(function(){
+        $state.go('app.newsfeed', {reload: true, location: 'replace'});
+      });
+
+    }
+   }
 
    $scope.ToLifeEvents = function(id)
    {
       $location.path('/app/mydata/mydataInit/'+$scope.HashData(id)+'/');
+
    };
 });
