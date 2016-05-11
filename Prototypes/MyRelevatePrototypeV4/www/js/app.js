@@ -164,6 +164,7 @@ angular.module('starter', ['ionic','starter.controllers', 'starter.services', 'n
 
   //Routing for the favorites page
   .state('app.favorites' , {
+    cache: false,
     url: '/favorites',
     views: {
       'menuContent': {

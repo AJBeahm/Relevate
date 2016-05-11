@@ -1,82 +1,39 @@
 <ion-view view-title="About">
   <ion-content class = "page">
-   <div id="about" class = "aboutPage">
+   <div id="about" class = "aboutPage" style="background:white;">
         <div class="col">
             <img src="img/RelevateLogoXL.png" style="margin-left:25%;width:50%;height:50%;">
         </div>
-         <div style="width:100%; background-color:blue; text-align:center;">
+         <div style="width:100%; background-color:#1FA1DB; text-align:center;">
             <h1 style="color:white;">MyRelevate: Elevate your relationship</h1>
           </div>
         <div class ="col" style = "text-align:center;padding:3%;position:relative; background-color:white; opacity:.85;">
             <h3> Your mobile hub for trustworthy & relevant relationship resources at your fingertips</h3>
         </div>
+        <div class="video">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/0ebF4P1_yU8" frameborder="0" allowfullscreen></iframe>
+        </div>
            <div class ="aboutDiv">
         <h4>For more information, contact Amber Vennum PhD at: Avennum@ksu.edu</h4>
         <h4>Or to find out more about the project and start Relevating today, visit us at our official social media sites:</h4>
-               <div class = "socialMedia">
-                 <div class ="socialMediaButton">
+               <div class = "button-bar socialMedia">
                     <button class="button icon-left ion-social-facebook button-positive" ng-click="ToMedia(FacebookLink)">
                     </button>
-                </div>
-                <div class = "socialMediaButton">
                     <button class="button icon-left ion-social-twitter button-calm" ng-click="ToMedia(TwitterLink)">
                     </button>
-                </div>
-                <div class = "socialMediaButton">
                     <button class="button icon-left ion-social-youtube button-assertive" ng-click="ToMedia(YoutubeLink)">
                     </button>
-                </div>
-                <div class = "socialMediaButton">
                     <button class="button icon-left ion-social-pinterest button-assertive" ng-click ="ToMedia(PintrestLink)">
                     </button>
-                </div>
                 </div>
       </div>
       <div id="readMore" class="readMore">
           <button class="button button-positive" style="width:100%;" ng-click="MoreInfo()">Learn More</button>
       </div>
       <div class="extraContent" ng-if="readMore">
-              <div style="width:100%; background-color:blue; text-align:center;margin-top:2%;">
-            <h2 style="color:white;">Who We Are</h2>
-          </div>
-              <div class = "aboutDiv">
-                                     <h4> <b>Relevate:</b> the voluntary act of raising your romantic endeavors or pre-existing relationship to a happier, healthier place through research-driven education and conscious decision-making
-be intentional about the decisions you make, the relationships you form, and the effort you put those relationships in order to give yourself the best possible chance at having healthy, stable romantic relationships now and in the future.</h4>
-                  <h3>An inclusive research team of...</h3>
-                  <ol>
-                     <li>Faculty & Graduate students in Marriage & Family Therapy</li>
-                     <li>Undergraduate Students in FSHS & PSYCHOLOGY</li>
-                     <li>MBA Students</li>
-                     <li>Computer Science Students</li>
-                  </ol>
-            </div>
-      <div style="width:100%; background-color:blue; text-align:center; margin-top:2%;">
-            <h2 style="color:white;">Our Mission</h2>
-          </div>
-     <div class="aboutDiv">
-        <h3>To bring <b>research-informed, personalized</b> and <b>up-to-date</b>
-            information to <b>young adults</b> to help them <b>achieve</b> and <b>maintain</b>
-            healthy romantic relationships through <b>accessible</b> mobile technology.</h3>
+        <div class = "aboutDiv">
+            <img height="100%" width ="100%"src="img/About.jpg">
         </div>
-          <div style="width:100%; background-color:blue; text-align:center;">
-            <h2 style="color:white;">Why</h2>
-          </div>
-        <div class ="aboutDiv">
-        <ol>
-            <li><h4>Greater access to relationship education for all</h4></li>
-            <li>
-                <ol>
-                    <li><h5>Low cost</h5></li>
-                    <li><h5>Easily accessible(via computer or phone)</h5></li>
-                    <li><h5>Self-guided & adaptive</h5></li>
-                </ol>
-            </li>
-            <li><h4>42% of young adults already use smart phones to access health or medical information (Fox & Duggan, 2012).</h4></li>
-            <li><h4>Premarital education associated with higher marital quality and lower odds of divorce (Stanley et al., 2006)</h4></li>
-            <li><h4>30 hrs. 15 min.: average amount of time per month adults over 18 are using mobile phone apps (Nielson, 2014)</h4></li>
-            <li><h4>80% of young adults today own a smart phone (Duggan & Brenner, 2013).</h4></li>
-        </ol>
-     </div>
    </div>
 </div>
   </ion-content>

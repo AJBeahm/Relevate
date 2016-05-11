@@ -1,6 +1,21 @@
 angular.module('starter.services', [])
 
 
+/*
+ - 1 Month mandatory token unless manual logout, so make
+   sure to log in with that if it is saved and not request another login.
+ - Make sure to use saved, secret, database password,etc.. in group admin document.
+GET REQUESTS FOR THINGS:
+  $http({
+  method: 'GET',
+  url: 'DevDatabaseHost/{WhatIWant}'
+  }).then(function successCallback(response){
+
+  }, function errorCallback(response) {
+
+  });
+*/
+
 //Factory for quiz data access
 .factory('Quizzes', function(){
 
@@ -203,8 +218,9 @@ angular.module('starter.services', [])
     },
     getByList: function(idList){
       var list = [];
+      console.log(idList);
       for (var i = 0; i < idList.length; i++){
-          list.push(news[idList[i]]);
+          list.push(news[idList[i]-1]);
          }
       return list;
       },
@@ -314,6 +330,16 @@ angular.module('starter.services', [])
       }
       else{
         return favorites[index];
+      }
+    },
+    find: function(articleId){
+      var favId = articleId;
+      var index = favorites.indexOf(favId);
+      if (index == -1){
+        return false;
+      }
+      else{
+        return true;
       }
     },
     remove: function(articleId){

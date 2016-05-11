@@ -1,7 +1,7 @@
 <ion-view view-title="{{contributor.name}}">
     <ion-content class="page">
        <div>
-        <div>
+        <div class ="list card">
             <div class="col col-50" style="float:left;">
                 <img class="profilePic-big" src="{{contributor.profilePic}}"></div>
             <div class="col col-50" style="float:right;">
@@ -12,9 +12,11 @@
                 <p ng-repeat="loc in contributor.education">- {{loc}}</p>
             </div>
         </div>
-        <div style="float:right;">
+        <div class="list card" style="float:right;">
+           <div style = "margin:4%">
              <h4>Biography:</h4>
              <p>{{contributor.description}}</p>
+           </div>
         </div>
         <div>
             <button class="button button-positive" ng-click="" style="width:100%;">
@@ -38,7 +40,7 @@
         <p>{{newsArticle.date | date : 'dd-M-yy'}}</p>
       </div>
       <div class="col-25">
-        <button id="article_{{newsArticle.id}}" class="button button-small button-assertive" style="float:right;">
+        <button id="article_{{newsArticle.id}}" class="button button-small button-assertive" style="float:right;" ng-click="AddFavorite(newsArticle.id)">
               <i ng-show="!isFavorited(newsArticle.id)" class="icon ion-heart"></i>
               <i ng-show="isFavorited(newsArticle.id)" class="icon ion-close-round"></i>
                </button>

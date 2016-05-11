@@ -203,9 +203,10 @@ angular.module('starter.controllers', [])
 })
 
 //Controller for the newsfeed page.
-.controller('NewsFeedCtrl', function($scope, $ionicHistory, $location, $cordovaToast, Tags, News, Contributors, Favorites){
+.controller('NewsFeedCtrl', function($scope, $state, $ionicActionSheet, $timeout, $ionicHistory, $cordovaSocialSharing, $location, $cordovaToast, Tags, News, Contributors, Favorites){
   $scope.news = News.all();
   $scope.contributors = Contributors.all();
+  $scope.favorites = Favorites.all();
   $scope.MatchTags = function(){
     var taglist = [];
     for(var x = 0; x < $scope.news.length; ++x){
@@ -241,6 +242,59 @@ angular.module('starter.controllers', [])
       alert("Added");
       //$cordovaToast.show("Favorited");
    }
+  }
+
+  $scope.OpenShareList = function(title, subject, file, link) {
+    // Show the action sheet
+    $cordovaSocialSharing
+        .share(title, subject, file, link)
+        .then(function(result) {
+              return true;
+            }, function(err) {
+              $scope.OpenNonInternalShareList(title,subject,file,link);
+              return false;
+        });
+}
+  $scope.OpenNonInternalShareList = function(title, subject, file, link){
+    var hideSheet = $ionicActionSheet.show({
+                    buttons: [{
+                        text: '<b>Twitter</b>'
+                    }, {
+                        text: '<b>Facebbok</b>'
+                    }],
+                    titleText: 'Share this article',
+                    cancelText: 'Cancel',
+                    cancel: function() {
+                        return false;
+                    },
+                    buttonClicked: function(index) {
+                        switch(index) {
+                            case 0:
+                                $cordovaSocialSharing
+                                    .shareViaTwitter(message, image, link)
+                                    .then(function(result) {
+                                        // Success!
+                                    }, function(err) {
+                                        // An error occurred. Show a message to the user
+                                    });
+                                    break;
+                            case 1:
+                                $cordovaSocialSharing
+                                    .shareViaFacebook(message, image, link)
+                                    .then(function(result) {
+                                        // Success!
+                                    }, function(err) {
+                                        // An error occurred. Show a message to the user
+                                    });
+                                    break;
+                        }
+                        return true;
+                    }
+                    // For example's sake, hide the sheet after two seconds
+                });
+                 $timeout(function() {
+                    hideSheet();
+                }, 2000);
   }
   $scope.OpenPDF = function(link){
     var ref = window.open(encodeURI(link), '_system', 'transitionstyle=crossdissolve,toolbarposition=top,location=no');
@@ -317,7 +371,7 @@ angular.module('starter.controllers', [])
   $scope.contributors = Contributors.all();
 })
 
-.controller('ContributorCtrl', function($scope, $stateParams, $location, $cordovaToast, Contributors, News, Tags, Favorites){
+.controller('ContributorCtrl', function($scope, $state, $stateParams, $location, $cordovaSocialSharing, $cordovaToast, Contributors, News, Tags, Favorites){
   $scope.contributor = Contributors.get($stateParams.contributorId);
   $scope.articles = News.getByAuthor($stateParams.contributorId);
   $scope.tags = Tags.get($scope.contributor.expertiseAreas);
@@ -337,31 +391,26 @@ angular.module('starter.controllers', [])
     var ref = window.open(encodeURI(link), '_system', 'transitionstyle=crossdissolve,toolbarposition=top,location=no');
   }
   $scope.AddFavorite = function(id){
-    if(Favorites.get(id)){
+   if(Favorites.get(id)){
       Favorites.remove(id);
+      alert("Removed");
       //$cordovaToast.show("Unfavorited");
    }
    else{
-       Favorites.add(id);
+      Favorites.add(id);
+      alert("Added");
       //$cordovaToast.show("Favorited");
    }
- }
+  }
 
    $scope.isFavorited = function(id){
-    return Favorites.get(id);
+    return Favorites.find(id);
    }
-   $scope.RemoveFavorite = function(id){
-    if(Favorites.get(id)){
-      Favorites.remove(id);
-      alert("Removed");
-      location.reload();
-    }
-  }
 })
 
-.controller('FavoritesCtrl', function($scope, $location, Contributors, News, Tags, Favorites){
-  $scope.contributors = Contributors.all();
+.controller('FavoritesCtrl', function($scope, $state, $location, $cordovaSocialSharing, Contributors, News, Tags, Favorites){
   $scope.news = News.getByList(Favorites.all());
+  $scope.contributors = Contributors.all();
   $scope.MatchTags = function(){
     var taglist = [];
     for(var x = 0; x < $scope.news.length; ++x){
@@ -373,15 +422,19 @@ angular.module('starter.controllers', [])
   $scope.tagList = $scope.MatchTags();
 
   $scope.RemoveFavorite = function(id){
-    if(Favorites.get(id)){
+    if(Favorites.find(id)){
       Favorites.remove(id);
       alert("Removed");
-      location.reload();
+      $scope.favorites = Favorites.all();
+      $scope.news = News.getByList(Favorites.all());
+    }
+    else{
+      alert("Not found");
     }
   }
 
   $scope.isFavorited = function(id){
-    return Favorites.get(id);
+    return Favorites.find(id);
   }
 })
 
